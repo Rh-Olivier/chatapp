@@ -1,0 +1,110 @@
+.header {
+	height: 12vh;
+	margin-top: 1rem;
+}
+
+.body {
+	height: 67vh;
+
+}
+
+.footer {
+	height: 14vh;
+	margin-bottom: 0.8rem;
+}
+
+.overflow > ul > li {
+	list-style: none;
+}
+
+.pdp {
+	width: 60px;
+	height: 60px;
+	/*position: relative;
+    top: -5px;*/
+}
+.pdp Image {
+	font-size: 40px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.459);
+}
+.position {
+	position: relative;
+	overflow-y: scroll;
+}
+.bs {
+	box-shadow: 0 0 7px rgba(0, 0, 0, 0.301);
+}
+
+.user-sms {
+	margin-bottom: 1rem;
+	padding: 5px 15px 5px 15px;
+	border-radius: 5px 0 5px 5px;
+	list-style: none;
+}
+.more-option-user{
+    position: relative;
+    right: 8.5rem;
+    font-size: 25px;
+    color: slategray;
+    cursor: pointer;
+}
+.friend-sms {
+	margin-bottom: 1rem;
+	margin-left: 1rem;
+	width: fit-content;
+	padding: 5px 15px 5px 15px;
+	border-radius: 0 5px 5px 5px;
+	list-style: none;
+}
+.more-option-friend{
+    position: relative;
+    left: 8.5rem;
+    font-size: 25px;
+    color: slategray;
+    cursor: pointer;
+}
+.friend-box {
+	position: relative;
+	right: 2rem;
+}
+
+#popover-menu {
+	padding: 2rem;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.308);
+	border-width: 0;
+}
+
+.setting {
+	position: absolute;
+	left: 2rem;
+}
+
+.pl-dark {
+	background-color: rgb(90, 90, 90);
+}
+.pl-dark::placeholder {
+	color: rgb(223, 221, 217);
+}
+
+.actif-status {
+	position: relative;
+	top: 1.2rem;
+	left: -1.2rem;
+	font-size: 17px;
+	border-radius: 50%;
+	background-color: white;
+
+}
+
+
+::-webkit-scrollbar{
+	width: 5px;
+}
+::-webkit-scrollbar-track{
+	background: rgba(255, 255, 255, 0);
+	border-radius: 4px;
+}
+::-webkit-scrollbar-thumb{
+	background: rgb(177, 174, 174);
+	border-radius: 2px;
+}

@@ -1,0 +1,52 @@
+.link{
+    text-decoration: none;
+}
+
+.item{
+    border-width: 0;
+    color: lim;
+}
+
+.change-profil{
+    position: absolute;
+    top: 6.3rem;
+    left: 13.5rem;
+    color: rgb(0, 38, 255);
+    font-size: 28px;
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.change-profil:hover{
+    color: rgb(1, 26, 167);
+
+}
+
+.popover{
+    position: absolute;
+    top: 8rem;
+    left: 14rem;
+    height: 11rem;
+}
+.fgroup{
+    position: relative;
+    top: -1rem;
+}
+
+.profil{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: relative;
+    top: 1rem;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+.login-box {
+	position: relative;
+	top: 20vh;
+
+	box-shadow: 0 0 10px rgba(0, 0, 255, 0.404);
+	width: 60%;
+	padding: 2rem;
+
+    border-radius: 10px;
+}
+
+.welcome{
+    position: relative;
+	top: 20vh;
+    padding: 5rem;
+    left: 20vh;
+    width: 30%;
+    color: rgb(55, 0, 255);
+}
+.welcome p{
+    color: rgba(37, 36, 63, 0.863);
+}
+
+.click{
+    display:block;
+    cursor: pointer;
+    text-align: right;
+
+}
+
+.password{
+    position: absolute;
+    top: 14.4rem;
+    right: 3.1rem;
+    cursor: pointer;
+    color: rgb(107, 82, 1);
+}
+.password-login{
+    position: absolute;
+    top: 12.6rem;
+    right: 3.1rem;
+    cursor: pointer;
+    color: rgb(107, 82, 1);
+}
