@@ -31,8 +31,8 @@ const Userbox = (props) => {
 
 
 	const user = useSelector(state => state.user.user.name)
-	const state = useSelector(state => state)
-	console.log('redux state ' , state);
+	//const state = useSelector(state => state)
+	//console.log('redux state ' , state);
 	const allMessage = useSelector(state => state.allMessage)
 	const handleCurrentMessage = (e) => {
 		e.preventDefault();

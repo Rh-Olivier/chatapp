@@ -9,11 +9,30 @@ import "../css/chatbox.css";
 import { useDispatch, useSelector } from "react-redux";
 import { socket } from "../api/socket";
 import ChatMenu from "../components/chatMenu";
-import sendMessage from "../api/send";
+//import sendMessage from "../api/send";
 import { nanoid } from "@reduxjs/toolkit";
 import { fetchAllMessage } from "../data/allmessageSlice";
+import server from "../api/config";
 
 
+
+
+
+
+const days = ['mon' , 'tue' , 'wed' , 'thur' , 'fri' , 'sun' ,'sat' ]
+const months = ['Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' , 'Jun' , 'Jul' , 'Aou' , 'Sep' , 'Oct' , 'Nov' , 'Dec']
+
+
+
+const correctAvatar = (arr, u) => {
+	let avatar;
+	arr.forEach((item) => {
+		if (item.name === u) {
+			avatar = item.avatar;
+		}
+	});
+	return avatar;
+};
 
 const Chatbox = (props) => {
 	const context = useContext(ModeContext);
@@ -26,9 +45,9 @@ const Chatbox = (props) => {
 	useEffect(() => {
 		if(socket.disconnected) socket.connect()
 		socket.emit("USER_CONNECTED", data.user.name);
-		console.log('disconnected : ' , socket.disconnected);
+		//console.log('disconnected : ' , socket.disconnected);
 		socket.on("FETCH_MESSAGE", (result) => {
-			console.log("Message fetched ", result);
+			//console.log("Message fetched ", result);
 			dispatch(fetchAllMessage(result))
 		});
 		return () => {
@@ -53,17 +72,38 @@ const Chatbox = (props) => {
 	const handleSubmission  = (e) => {
 		e.preventDefault()
 		if (state !== '') {
-			const date = Date()
+			// Create a new date
+			const date = new Date()
+			// Format : yy mm dd | hh : mn
+			const dateString = `${days[date.getDay()]}-${months[date.getMonth()]}-${date.getFullYear()} | ${date.getHours()}:${date.getMinutes()}`
+			//console.log('date' , dateString);
 			socket.emit('SEND_MESSAGE' , {
 				user : msg.user ,
 				friend :  msg.friend,
 				id :  nanoid(), 
 				content : state ,
-				timeStamp : date
+				timeStamp : dateString
 			} )
+			setstate('')
 		}
 	};
 
+
+	const AllFriend = useSelector(state => state.friend)
+	useEffect(() => {
+		const url = server + "/profil/" + correctAvatar(AllFriend, msg.friend);
+		setUrl(url)
+		// eslint-disable-next-line
+	}, [msg])
+
+
+
+
+	/*useEffect(() => {
+		if (data === undefined) {
+			const fromLocalStorage = 
+		}
+	}, [])*/
 
 
 
@@ -90,7 +130,7 @@ const Chatbox = (props) => {
 								style={{ width: "45px", height: "45px", borderRadius: "50%" }}
 							/>
 							<div className="d-flex flex-column ps-3">
-								<h5 className="text-white">USER NAME</h5>
+								<h5 className="text-white">  {msg.friend} </h5>
 							</div>
 						</div>
 
@@ -120,7 +160,7 @@ const Chatbox = (props) => {
 									type='submit'
 									className="ms-2 mt-2"
 									variant="white"
-									onClick={() => console.log("")}
+									
 								>
 									<RiNavigationFill
 										color="blue"

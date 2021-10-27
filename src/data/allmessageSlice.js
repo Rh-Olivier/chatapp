@@ -9,7 +9,12 @@ const allMessageSlice = createSlice({
         },
         updateOneMessage : (state , action) => {
             let rightOne = state.find( msg => msg.friend === action.payload.friend)
-            rightOne.messages = action.payload.messages
+            if (rightOne === undefined) {
+                console.log('--> err updateOneMEssage : ' , rightOne  );
+            } else {
+                rightOne.messages = action.payload.messages
+            }
+            
         },
         addOneMessage : (state , action) =>{
             state.push(action.payload)

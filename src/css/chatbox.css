@@ -68,6 +68,11 @@
 	right: 2rem;
 }
 
+.timeStamp{
+	font-size: smaller;
+	color: rgba(0, 0, 0, 0.7);
+}
+
 #popover-menu {
 	padding: 2rem;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.308);
@@ -76,7 +81,8 @@
 
 .setting {
 	position: absolute;
-	left: 2rem;
+	left: 1rem;
+	top: 1rem;
 }
 
 .pl-dark {

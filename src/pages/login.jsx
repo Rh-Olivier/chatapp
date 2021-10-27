@@ -63,7 +63,7 @@ const Login = () => {
 			if (!res.data.hasOwnProperty('err')) {
 				dispatch(addUser(res.data))
 				let jsonData = JSON.stringify(res.data);
-				localStorage.setItem('userData' , jsonData)
+				localStorage.setItem(`${res.data.name}` , jsonData)
 				setauthorized(true)
 			}
 		}).catch((err) => console.log(err));

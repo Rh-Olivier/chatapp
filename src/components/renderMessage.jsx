@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import server from "../api/config";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+//import axios from "axios";
 import fetchDefaultMessage from "../api/defaultMessage";
 import { io } from "socket.io-client";
 import { updateOneMessage } from "../data/allmessageSlice";
+import { addMessage } from "../data/messageSlice";
+
+
+
 
 const correctAvatar = (arr, u) => {
 	let avatar;
@@ -27,35 +31,46 @@ const Message = ({ setUrl }) => {
 
 	const AllFriend = useSelector((state) => state.friend);
 	const user = useSelector((state) => state.user);
+
+	// Current message viewed in the ui
 	const messageRedux = useSelector((state) => state.message);
 	useEffect(() => {
-		fetchDefaultMessage(user)
+		//console.log('user ' , user.user.name);
+		fetchDefaultMessage(user.user.name)
 			.then((result) => {
 				console.log(result);
-				setmessage(result.messages);
+				dispatch(addMessage(result))
 			})
 			.catch((err) => {
 				console.log(err);
 			});
+			// eslint-disable-next-line 
 	}, []);
 	useEffect(() => {
 		if (messageRedux.hasOwnProperty("user")) {
-			console.log("msg redux ", messageRedux);
+			//console.log("msg redux ", messageRedux);
 			setmessage([]);
 			setmessage(messageRedux.messages);
 		}
 	}, [messageRedux]);
 
 	const socket = io(server);
-	socket.on(`${user}`, (data) => {
+	socket.on(`${user.user.name}`, (data) => {
 		console.log("from event ", data);
+		// ---> {user , friend , messages }
 		dispatch(updateOneMessage(data));
+
+		// if the user is chatting with the friend who sent
+		// the message , dispatch it directly to the UI
+		if (data.friend === messageRedux.friend ) {
+			dispatch(addMessage(data))
+		}
 		socket.disconnect();
 	});
 
 	const render = message.map((item) => {
 		const { id, author, content, timeStamp } = item;
-		console.log("user : ", user);
+		//console.log("user : ", user);
 		if (author === user.user.name) {
 			return (
 				<li
@@ -64,7 +79,7 @@ const Message = ({ setUrl }) => {
 				>
 					<div className="border border-1 border-primary user-sms">
 						<div className="d-flex justify-content-end">{content}</div>
-						{timeStamp}
+						<div className='timeStamp'>{timeStamp}</div>
 					</div>
 				</li>
 			);
@@ -82,7 +97,7 @@ const Message = ({ setUrl }) => {
 					</div>
 					<div className="bg-primary text-white friend-sms">
 						<div>{content}</div>
-						{timeStamp}
+						<div className='timeStamp'>{timeStamp}</div>
 					</div>
 				</li>
 			);

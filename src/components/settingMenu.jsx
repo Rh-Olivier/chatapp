@@ -19,8 +19,8 @@ import { Link } from "react-router-dom";
 import { ModeContext, themes } from "../context/mode";
 import "../css/setting.css";
 import { useSelector } from "react-redux";
-import server from "../api/config";
-import { io } from "socket.io-client";
+//import server from "../api/config";
+//import { io } from "socket.io-client";
 import { socket } from "../api/socket";
 
 const SettingMenu = (props) => {
@@ -143,6 +143,11 @@ const SettingMenu = (props) => {
 							</Link>
 						</ListGroup.Item>
 					</ListGroup>
+					<Container className='author small'>
+						Chat app v1.0.0 <br />
+						Creator : RASOLOMANANA Herimanitra Olivier <br />
+						Email : rasolomananaherimanitraolivier@gmail.com
+					</Container>
 				</Offcanvas.Body>
 			</Offcanvas>
 		</>
