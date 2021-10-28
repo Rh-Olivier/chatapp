@@ -1,9 +1,10 @@
 import axios from "axios";
+import * as server from "./config";
 
-const base = 'localhost:5000'
+
 const postNewAccount = async (name , password , email) => {
     try {
-       const result = await axios.post(`http://${base}/new-account` , {
+       const result = await axios.post(`${server}/new-account` , {
            name , password , email
        }) 
        return result
