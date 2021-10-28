@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../data/messageSlice";
 import new_interaction from "../api/new-interaction";
 import { addOneMessage } from "../data/allmessageSlice";
+import server from "../api/config";
 
 const find = (ar, u) => {
 	let isActif = false;
@@ -68,7 +69,7 @@ const Userbox = (props) => {
 			<Row>
 				<Col lg="4">
 					<Image
-						src={"http://localhost:5000/profil/" + props.user.avatar}
+						src={`${server}/profil/${props.user.avatar}` }
 						className="pdp rounded-circle border"
 					/>
 					{actifStatus}

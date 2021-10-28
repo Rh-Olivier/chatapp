@@ -22,6 +22,7 @@ import { useSelector } from "react-redux";
 //import server from "../api/config";
 //import { io } from "socket.io-client";
 import { socket } from "../api/socket";
+import server from "../api/config";
 
 const SettingMenu = (props) => {
 	const [show, setshow] = useState(false);
@@ -80,7 +81,7 @@ const SettingMenu = (props) => {
 						<div>
 							<div>
 								<Image
-									src={"http://localhost:5000/profil/" + data.user.avatar}
+									src={`${server}/profil/${data.user.avatar}`}
 									className="profil border"
 								/>
 							</div>
@@ -93,7 +94,7 @@ const SettingMenu = (props) => {
 									<div className="popover">
 										<Form
 											method="POST"
-											action="http://localhost:5000/upload"
+											action={`${server}/upload`}
 											enctype="multipart/form-data"
 											className="m-3"
 										>
