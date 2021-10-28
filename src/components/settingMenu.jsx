@@ -147,8 +147,8 @@ const SettingMenu = (props) => {
 					<Container className='author small'>
 						Chat app v1.0.0 <br />
 						Creator : RASOLOMANANA Herimanitra Olivier <br />
-						Email : rasolomananaherimanitraolivier@gmail.com
-					</Container>
+						Info : <a href="https://github.com/Rh-Olivier">github</a> | <a href="https://www.facebook.com/olivier.rasolomananaherimanitra">facebook</a>
+						</Container>
 				</Offcanvas.Body>
 			</Offcanvas>
 		</>

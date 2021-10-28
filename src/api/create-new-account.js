@@ -1,5 +1,5 @@
 import axios from "axios";
-import * as server from "./config";
+import server from "./config";
 
 
 const postNewAccount = async (name , password , email) => {
