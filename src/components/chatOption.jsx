@@ -9,6 +9,7 @@ import { RiMenu3Line, RiDeleteBin5Fill } from "react-icons/ri";
 import {  useDispatch, useSelector } from "react-redux";
 import deleteMessage from "../api/delete";
 import { updateOneMessage } from "../data/allmessageSlice";
+import { addMessage } from "../data/messageSlice";
 
 const Menu = () => {
 	const message = useSelector(state => state.message)
@@ -19,8 +20,9 @@ const Menu = () => {
 		e.preventDefault()
 		deleteMessage(message.user , message.friend)
 			.then((result) => {
-				console.log(result);
+				//console.log(result);
 				dispatch(updateOneMessage(result))
+				dispatch(addMessage(result))
 			}).catch((err) => {
 				console.log(err);
 			});

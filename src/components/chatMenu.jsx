@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { allFriend } from "../data/friendsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import socketClient from "socket.io-client";
+import findOneUser from "../api/find";
 
 const fetchUsers = async () => {
 	try {
@@ -55,9 +56,6 @@ const ChatMenu = () => {
 	const Server = socketClient(server);
 
 	Server.on("connect", () => {
-
-
-
 		Server.on("ONLINE_USERS", (actif) => {
 			/*if (actifList.length === 0) {
 				console.log('actif = ' , actif);
@@ -83,12 +81,37 @@ const ChatMenu = () => {
 
 		Server.on("OFFLINE_USERS", (actif) => {
 			console.log("offline ", actif);
-			setactifList([...actif])
+			setactifList([...actif]);
 		});
 	});
 
-	//const [state, setstate] = useState('')
+	const [search, setSearch] = useState("");
+	// CONTROL THE SEARCH BAR
+	const handleChange = (e) => {
+		e.preventDefault();
+		setSearch(e.target.value);
+	};
 
+	// ERROR NOT FOUND
+	const [show, setshow] = useState(false);
+
+	// SEARCH ENGINE
+	const handleSearch = async (e) => {
+		e.preventDefault();
+		if (search !== "") {
+			const result = await findOneUser(search);
+			if (result.hasOwnProperty("err")) {
+				//console.log('not found');
+				setshow(true);
+				setTimeout(() => {
+					setshow(false);
+				}, 3000);
+			} else {
+				setshow(false);
+				setusers([result]);
+			}
+		}
+	};
 	return (
 		<Container
 			className="shadow mt-1 p-5"
@@ -96,21 +119,30 @@ const ChatMenu = () => {
 		>
 			<Row className="header">
 				<Col>
-					<Form className="d-flex justify-content-around">
+					<Form
+						className="d-flex justify-content-around"
+						onSubmit={handleSearch}
+					>
 						<Form.Control
 							type="text"
 							placeholder="Search"
 							className={context.dark ? "pl-dark" : null}
+							value={search}
+							onChange={handleChange}
 						/>
 						<Button
 							className="ms-2"
 							variant={context.dark ? "light" : "white"}
-							onClick={() => console.log("search")}
+							type="submit"
 						>
 							<RiSearch2Line color="blue" />
 						</Button>
 					</Form>
 				</Col>
+				<p className={show ? "text-danger small" : "visually-hidden"}>
+					{" "}
+					Ooops! not found{" "}
+				</p>
 			</Row>
 			<Row>
 				<ListGroup className="body position overflow ">

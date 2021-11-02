@@ -57,11 +57,11 @@ const Userbox = (props) => {
 	return (
 		<ListGroupItem
 			action
-			className="mb-1 shadow-sm border-1"
+			className="mb-1 shadow-sm border-1 listItem"
 			style={{
 				backgroundColor: context.bg,
 				color: context.color,
-				width: "20rem",
+				
 			}}
 			onClick={handleCurrentMessage}
 		>
@@ -73,14 +73,14 @@ const Userbox = (props) => {
 					/>
 					{actifStatus}
 				</Col>
-				<Col>
+				<Col className='userInfo' >
 					<Container
 						fluid
 						className="d-flex flex-column"
 						style={{ position: "relative", right: "2rem" }}
 					>
 						<div className="text-primary">{props.user.name}</div>
-						<div className="text-secondary small">user details</div>
+						
 					</Container>
 				</Col>
 			</Row>
