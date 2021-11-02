@@ -44,9 +44,9 @@
 
 .author{
     position: absolute;
-    bottom: 2rem;
+    bottom: 3rem;
     width: 22rem;
-    color: rgb(0, 110, 236);
+  
     font-size: smaller;
     padding-top: 13px;
     border-top: 1px solid rgba(29, 29, 131, 0.295);

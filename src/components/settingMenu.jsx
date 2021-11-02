@@ -9,11 +9,11 @@ import {
 	Form
 } from "react-bootstrap";
 import {
-	RiMoonFill,
+	RiMoonFill,RiInstagramFill,
 	RiSunFill,
 	RiSettingsFill,
 	RiLogoutCircleFill,
-	RiAddCircleFill,
+	RiAddCircleFill,RiFacebookCircleFill ,RiGithubFill, RiGoogleFill
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { ModeContext, themes } from "../context/mode";
@@ -149,9 +149,14 @@ const SettingMenu = (props) => {
 						</ListGroup.Item>
 					</ListGroup>
 					<Container className='author small'>
-						Chat app v1.0.0 <br />
-						Creator : RASOLOMANANA Herimanitra Olivier <br />
-						Email : rasolomananaherimanitraolivier@gmail.com
+						Chat app v0.0.1 <br />
+						RASOLOMANANA Herimanitra Olivier <br />
+						<div className="d-flex justify-content-around mt-3">
+							<Link to=""><RiFacebookCircleFill style={{fontSize:"25px"}} /></Link>
+							<Link to=""><RiGithubFill color='black' style={{fontSize:"25px"}}/></Link>
+							<Link to=""><RiInstagramFill color='blue' style={{fontSize:"25px"}}/></Link>
+							<Link to=""><RiGoogleFill color='black' style={{fontSize:"25px"}}/></Link>
+						</div>
 					</Container>
 				</Offcanvas.Body>
 			</Offcanvas>
