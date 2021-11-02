@@ -18,7 +18,6 @@ import server from "../api/config";
 
 
 
-
 const days = ['mon' , 'tue' , 'wed' , 'thur' , 'fri' , 'sun' ,'sat' ]
 const months = ['Jan' , 'Feb' , 'Mar' , 'Apr' , 'May' , 'Jun' , 'Jul' , 'Aou' , 'Sep' , 'Oct' , 'Nov' , 'Dec']
 
@@ -112,6 +111,8 @@ const Chatbox = (props) => {
 			className=""
 			style={{ backgroundColor: context.bg, color: context.color }}
 		>
+
+			
 			<div className="setting">
 				<SettingMenu setstate={props.setstate} />
 			</div>

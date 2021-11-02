@@ -44,12 +44,12 @@ const SettingMenu = (props) => {
 	};
 	const darkmode = (
 		<div onClick={handleContext} style={{ cursor: "pointer" }}>
-			<RiMoonFill color="maroon" /> Active dark mode
+			<RiMoonFill color="maroon" /> Enable dark mode
 		</div>
 	);
 	const lightmode = (
 		<div onClick={handleContext} style={{ cursor: "pointer" }}>
-			<RiSunFill color="yellow" /> Active light mode
+			<RiSunFill color="yellow" /> Disable light mode
 		</div>
 	);
 	const style = { backgroundColor: context.bg, color: context.color };
@@ -59,6 +59,11 @@ const SettingMenu = (props) => {
 		e.preventDefault();
 		console.log("I am log out ", data.user.name);
 		socket.emit('LOG_OUT' ,data.user.name)
+		
+		// Remove the user data from localStorage 
+		localStorage.removeItem('user')
+
+		// Disconnect the socket.ionn
 		socket.disconnect()
 		console.log('disconnect : ' ,socket.disconnected);
 	};
