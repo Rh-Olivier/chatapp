@@ -7,117 +7,63 @@
    viewBox="0 0 1366 768"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (1:1.1+202109281946+c3084ef5ed)"
-   sodipodi:docname="bg5.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview7"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:document-units="px"
-     showgrid="false"
-     inkscape:zoom="0.45254834"
-     inkscape:cx="655.17863"
-     inkscape:cy="513.75727"
-     inkscape:window-width="1366"
-     inkscape:window-height="704"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
   <defs
      id="defs2">
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect1296"
-       is_visible="true"
-       lpeversion="1"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect999"
-       is_visible="true"
-       lpeversion="1"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect962"
-       is_visible="true"
-       lpeversion="1"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
-    <inkscape:path-effect
-       effect="bspline"
-       id="path-effect859"
-       is_visible="true"
-       lpeversion="1"
-       weight="33.333333"
-       steps="2"
-       helper_size="0"
-       apply_no_weight="true"
-       apply_with_weight="true"
-       only_selected="false" />
     <meshgradient
-       inkscape:collect="always"
-       id="meshgradient14514"
+       id="meshgradient3122"
        gradientUnits="userSpaceOnUse"
-       x="0.5"
-       y="484.14084"
-       gradientTransform="matrix(2.6838822,0,0,2.6925534,-0.18591508,-1311.1633)">
+       x="880.63208"
+       y="0.085000001"
+       gradientTransform="matrix(2.7952978,0,0,2.7952978,-2466.615,9.2041421)">
       <meshrow
-         id="meshrow1633">
+         id="meshrow13002">
         <meshpatch
-           id="meshpatch1635">
+           id="meshpatch13004">
           <stop
-             path="c 56.8712,35.1191  92.7181,158.254  290.559,85.1563"
-             style="stop-color:#da22e4;stop-opacity:1"
-             id="stop1637" />
+             path="c 162.54,0  330.585,-4.63956  493.124,-4.63955"
+             style="stop-color:#f10af1;stop-opacity:1"
+             id="stop13006" />
           <stop
-             path="c -0.00151385,95.3773  88.8886,105.597  88.8886,200.971"
-             style="stop-color:#f700ff;stop-opacity:1"
-             id="stop1639" />
+             path="c -0.00082728,70.3296  80.2636,139.99  78.8291,211.393"
+             style="stop-color:#2300ff;stop-opacity:1"
+             id="stop13008" />
           <stop
-             path="c -126.484,0  -252.967,0  -379.451,0"
-             style="stop-color:#e91eee;stop-opacity:1"
-             id="stop1641" />
+             path="c -162.363,-0.132114  -409.589,4.36996  -571.953,4.23806"
+             style="stop-color:#865ffa;stop-opacity:1"
+             id="stop13010" />
           <stop
-             path="c 0,-95.3763  0,-190.753  0.0034,-286.127"
-             style="stop-color:#1b00ff;stop-opacity:1"
-             id="stop1643" />
+             path="c 4.91558e-05,-70.3297  0.000285996,-140.659  -0.0001,-210.992"
+             style="stop-color:#f10af1;stop-opacity:1"
+             id="stop13012" />
+        </meshpatch>
+      </meshrow>
+      <meshrow
+         id="meshrow13014">
+        <meshpatch
+           id="meshpatch13016">
+          <stop
+             path="c -0.376228,18.702  -84.3307,40.5487  -84.3307,58.9684"
+             id="stop13018" />
+          <stop
+             path="c -162.539,-0.00309099  -325.083,0.52836  -487.623,0.52836"
+             style="stop-color:#eb61f8;stop-opacity:1"
+             id="stop13020" />
+          <stop
+             path="c 0,-18.4198  0,-36.8396  0.0007,-55.2587"
+             style="stop-color:#ff00ff;stop-opacity:1"
+             id="stop13022" />
         </meshpatch>
       </meshrow>
     </meshgradient>
   </defs>
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1">
     <path
-       id="path960"
-       style="fill:url(#meshgradient14514);fill-opacity:1;stroke:none;stroke-width:2.68821px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="M 1.1560041,-7.5883936 V 760.77801 c 0,1.13448 0.9135348,2.05097 2.0443641,2.05097 H 1019.5583 C 870.53512,708.05442 926.81323,666.6364 790.29012,592.85309 725.25561,554.46939 621.29942,589.6703 575.77176,529.65945 515.70687,469.39534 525.2889,381.6247 376.77668,321.23129 300.15064,276.71697 182.46931,305.40065 127.00021,235.44875 45.874189,130.53502 66.643083,44.630933 1.1560041,-7.5883936 Z"
-       sodipodi:nodetypes="csscccccc" />
+       id="path857"
+       style="fill:url(#meshgradient3122);fill-opacity:1;stroke:none;stroke-width:2.7953px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M -4.986134,9.4417399 C 48.977276,136.77611 23.482636,231.4472 150.0502,318.46871 c 161.71474,88.88985 354.78183,-23.81049 491.45736,61.98262 88.78201,124.34441 101.91125,239.8642 256.45543,335.17014 126.32571,48.4202 242.67411,41.28898 378.86971,29.08188 27.0774,2.50384 54.1513,5.00398 81.2274,7.50692 V 11.565498 c 0,-1.177778 -0.9514,-2.1237581 -2.1291,-2.1237581 z" />
   </g>
   <script
      id="mesh_polyfill"

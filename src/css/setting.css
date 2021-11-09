@@ -3,15 +3,17 @@
 }
 
 .item{
-    border-width: 0;
-    color: lim;
+    border-width: 0 0 1px 0;
+    border-color: rgba(145, 144, 144, 0.548);
+    margin-bottom: 5px;
+    border-radius: 0;
 }
 
 .change-profil{
     position: absolute;
     top: 6.3rem;
     left: 13.5rem;
-    color: rgb(0, 38, 255);
+    color: rgb(173, 0, 226);
     font-size: 28px;
     background-color: #fff;
     border-radius: 50%;
@@ -19,28 +21,39 @@
     transition: all 0.2s;
 }
 .change-profil:hover{
-    color: rgb(1, 26, 167);
+    color: rgb(139, 3, 173);
 
 }
 
 .popover{
     position: absolute;
-    top: 8rem;
-    left: 14rem;
-    height: 11rem;
+    top: 8.5rem;
+    left: 5rem;
+    box-shadow: 0 0 3px rgba(41, 40, 40, 0.212);
+    border-width: 0;
 }
-.fgroup{
+.profil-container{
     position: relative;
-    top: -1rem;
+    top: 1rem;
+    width: 102px;
+    height: 102px;
+    overflow: hidden;
+    border-radius: 50%;
 }
 
 .profil{
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    position: relative;
-    top: 1rem;
+    
+    transition: width 0.3s , height 0.3s ;
 }
+.profil:hover{
+    width: 115px;
+    height: 115px;
+    position: relative;
+}
+
 
 .author{
     position: absolute;
@@ -53,7 +66,11 @@
 }
 
 
-/* world */
+.ri{
+    font-size: 20px;
+    margin-right: 5px;
+
+}
 
 
 

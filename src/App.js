@@ -1,5 +1,5 @@
 import React, { useState} from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/style.css"
 import Chatbox from "./pages/chatbox";
 import {  Container } from "react-bootstrap";
 import { ModeContext, themes } from "./context/mode";

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState , useRef } from "react";
 import { Container, Form, Button, Image, Row, Col } from "react-bootstrap";
 import { RiNavigationFill } from "react-icons/ri";
 import Menu from "../components/chatOption";
@@ -89,21 +89,28 @@ const Chatbox = (props) => {
 
 
 	const AllFriend = useSelector(state => state.friend)
+
+	// SCROLL AUTOMATICALY TO THE BOTTOM
+	const messageEndRef = useRef(null)
+	const scrollToBottom  = () => {
+		messageEndRef.current?.scrollIntoView({ behavior: 'smooth'})
+	};
+
+
 	useEffect(() => {
 		const url = server + "/profil/" + correctAvatar(AllFriend, msg.friend);
 		setUrl(url)
+		scrollToBottom()
 		// eslint-disable-next-line
 	}, [msg])
 
 
 
 
-	/*useEffect(() => {
-		if (data === undefined) {
-			const fromLocalStorage = 
-		}
-	}, [])*/
+	
 
+
+	
 
 
 	return (
@@ -123,7 +130,7 @@ const Chatbox = (props) => {
 				<Col>
 					<Container
 						fluid
-						className="shadow p-3 header d-flex justify-content-between bg-primary"
+						className="shadow p-3 header d-flex justify-content-between message-header"
 					>
 						<div className="d-flex">
 							<Image
@@ -140,7 +147,8 @@ const Chatbox = (props) => {
 					
 					<Container fluid className="body overflow-auto my-2 py-3">
 						<ul >
-							<Message setUrl={setUrl} />
+							<Message setUrl={setUrl} scroll={scrollToBottom} />
+							<div ref={messageEndRef}></div>
 						</ul>
 					</Container>
 					<Container

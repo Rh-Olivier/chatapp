@@ -21,10 +21,12 @@ const correctAvatar = (arr, u) => {
 	return avatar;
 };
 
-const Message = ({ setUrl }) => {
+const Message = ({ setUrl , scroll }) => {
 	const [message, setmessage] = useState([]);
 	useEffect(() => {
-		console.log("after click message ", message);
+		//console.log("after click message ", message);
+		scroll()
+		// eslint-disable-next-line
 	}, [message]);
 
 	const dispatch = useDispatch();
@@ -95,7 +97,7 @@ const Message = ({ setUrl }) => {
 							style={{ width: "30px", height: "30px", borderRadius: "50%" }}
 						/>
 					</div>
-					<div className="bg-primary text-white friend-sms">
+					<div className="bg-radient text-white friend-sms">
 						<div>{content}</div>
 						<div className='timeStamp'>{timeStamp}</div>
 					</div>

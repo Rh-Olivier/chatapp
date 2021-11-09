@@ -7,12 +7,15 @@ const allMessageSlice = createSlice({
         fetchAllMessage : (state  , action) => {
             return [...action.payload]
         },
+
+        // UPDATE A SPECIFIC MESSAGE
         updateOneMessage : (state , action) => {
             let rightOne = state.find( msg => msg.friend === action.payload.friend)
             if (rightOne === undefined) {
                 console.log('--> err updateOneMEssage : ' , rightOne  );
             } else {
                 rightOne.messages = action.payload.messages
+                rightOne.seen = action.payload.seen
             }
             
         },

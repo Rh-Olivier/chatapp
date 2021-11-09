@@ -114,7 +114,7 @@ const ChatMenu = () => {
 	};
 	return (
 		<Container
-			className="shadow mt-1 p-5"
+			className="shadow mt-1 p-5 chatmenu-container"
 			style={{ backgroundColor: context.bg, color: context.color }}
 		>
 			<Row className="header">

@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
-import { Image, Container, Row, Col, ListGroupItem } from "react-bootstrap";
+import React, { useContext, useState, useEffect } from "react";
+import {
+	Image,
+	Container,
+	Row,
+	Col,
+	Badge,
+	ListGroup,
+} from "react-bootstrap";
 import { RiCheckboxBlankCircleFill } from "react-icons/ri";
 import { ModeContext } from "../context/mode";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessage } from "../data/messageSlice";
 import new_interaction from "../api/new-interaction";
-import { addOneMessage } from "../data/allmessageSlice";
+import { addOneMessage, updateOneMessage } from "../data/allmessageSlice";
+import seenUpdate from "../api/seen";
 
 const find = (ar, u) => {
 	let isActif = false;
@@ -19,8 +27,7 @@ const find = (ar, u) => {
 
 const Userbox = (props) => {
 	const context = useContext(ModeContext);
-	const dispatch = useDispatch()
-
+	const dispatch = useDispatch();
 
 	const actifStatus = (
 		<RiCheckboxBlankCircleFill
@@ -29,62 +36,105 @@ const Userbox = (props) => {
 		/>
 	);
 
-
-	const user = useSelector(state => state.user.user.name)
+	const user = useSelector((state) => state.user.user.name);
 	//const state = useSelector(state => state)
 	//console.log('redux state ' , state);
-	const allMessage = useSelector(state => state.allMessage)
+
+	// ALL MESSAGES IN THE REDUX STORE
+	const allMessage = useSelector((state) => state.allMessage);
+
+	// MATCH THE FRIEND NAME AND THE MESSAGE 'BADGE'
+	const [seen, setseen] = useState();
+
+	const alertNewMessage = () => {
+		const currentOne = allMessage.find(
+			(item) => item.friend === props.user.name
+		);
+		if (currentOne !== undefined) setseen(currentOne.seen);
+	};
+	useEffect(() => {
+		alertNewMessage();
+		// eslint-disable-next-line
+	}, [allMessage]);
+
 	const handleCurrentMessage = (e) => {
 		e.preventDefault();
-		const currentOne = allMessage.find( item => item.friend === props.user.name)
+		const currentOne = allMessage.find(
+			(item) => item.friend === props.user.name
+		);
 		if (currentOne === undefined) {
-			new_interaction(user , props.user.name)
-			.then((result) => {
-				console.log('new inter ' ,result);
-				dispatch(addOneMessage(result.data))
-				dispatch(addMessage(result.data))
-				console.log('all msg update'  , allMessage);
-			}).catch((err) => {
-				console.log('new inter err ' ,err);
-			});
+			new_interaction(user, props.user.name)
+				.then((result) => {
+					//console.log('new inter ' ,result);
+					dispatch(addOneMessage(result.data));
+					dispatch(addMessage(result.data));
+
+					
+					//console.log('all msg update'  , allMessage);
+				})
+				.catch((err) => {
+					console.log("new inter err ", err);
+				});
 		} else {
-			console.log('dispatching... ');
-			dispatch(addMessage(currentOne))
+			
+			// SEND REQUEST TO THE SERVER TO TELL THAT THE CURRENT
+			// MESSAGE WAS SEEN BY THE USER
+			seenUpdate(user, props.user.name)
+				.then((result) => {
+					// UPDATE THE ALL MESSAGE REDUX
+					dispatch(updateOneMessage(result));
+
+					// ADD THE NEW MSG TO THE UI
+					dispatch(addMessage(result));
+				})
+				.catch((err) => {
+					console.log("error while update seen", err);
+				});
+
+			//console.log('alert new msg ' , alertNewMessage());
 		}
-		
 	};
 
+
 	return (
-		<ListGroupItem
-			action
-			className="mb-1 shadow-sm border-1 listItem"
+		<div
+			
+			className="mb-1 shadow-sm listItem p-2"
 			style={{
 				backgroundColor: context.bg,
 				color: context.color,
-				
 			}}
 			onClick={handleCurrentMessage}
 		>
 			<Row>
-				<Col lg="4">
-					<Image
-						src={"http://localhost:5000/profil/" + props.user.avatar}
-						className="pdp rounded-circle border"
-					/>
+				<Col lg="3">
+					<div className="pdp-container">
+						<Image
+							src={"http://localhost:5000/profil/" + props.user.avatar}
+							className="pdp rounded-circle border"
+						/>
+					</div>
+
 					{actifStatus}
 				</Col>
-				<Col className='userInfo' >
+				<Col className="userInfo" lg="6">
 					<Container
 						fluid
 						className="d-flex flex-column"
 						style={{ position: "relative", right: "2rem" }}
 					>
-						<div className="text-primary">{props.user.name}</div>
-						
+						<div style={{ color: context.color }}>{props.user.name}</div>
 					</Container>
 				</Col>
+				<Col>
+					{seen ? null : (
+						<Badge bg="info" className="notification-badge">
+							new
+						</Badge>
+					)}
+				</Col>
 			</Row>
-		</ListGroupItem>
+		</div>
 	);
 };
 

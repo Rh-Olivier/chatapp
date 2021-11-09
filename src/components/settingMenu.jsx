@@ -9,7 +9,7 @@ import {
 	Form
 } from "react-bootstrap";
 import {
-	RiMoonFill,RiInstagramFill,
+	RiMoonFill,RiInstagramFill,RiUploadCloud2Fill,
 	RiSunFill,
 	RiSettingsFill,
 	RiLogoutCircleFill,
@@ -18,10 +18,16 @@ import {
 import { Link } from "react-router-dom";
 import { ModeContext, themes } from "../context/mode";
 import "../css/setting.css";
-import { useSelector } from "react-redux";
-//import server from "../api/config";
+import { useDispatch, useSelector } from "react-redux";
+import server from "../api/config";
 //import { io } from "socket.io-client";
 import { socket } from "../api/socket";
+import axios from "axios";
+import { addUser } from "../data/userSlice";
+
+
+
+
 
 const SettingMenu = (props) => {
 	const [show, setshow] = useState(false);
@@ -43,12 +49,12 @@ const SettingMenu = (props) => {
 	};
 	const darkmode = (
 		<div onClick={handleContext} style={{ cursor: "pointer" }}>
-			<RiMoonFill color="maroon" /> Enable dark mode
+			<RiMoonFill color="maroon" className='ri'  /> Enable dark mode
 		</div>
 	);
 	const lightmode = (
 		<div onClick={handleContext} style={{ cursor: "pointer" }}>
-			<RiSunFill color="yellow" /> Disable light mode
+			<RiSunFill color="yellow"   className='ri'  /> Disable light mode
 		</div>
 	);
 	const style = { backgroundColor: context.bg, color: context.color };
@@ -67,6 +73,36 @@ const SettingMenu = (props) => {
 		console.log('disconnect : ' ,socket.disconnected);
 	};
 
+
+	// HANDLE THE UPLOADING PROCESS :
+	const dispatch = useDispatch()
+
+	// STATE FOR SELECTED FILES
+	const [selectedFiles, setselectedFiles] = useState(undefined)
+
+	// HANDLE THE FILE SELECTED
+	const selectFile = e => setselectedFiles(e.target.files)
+	//console.log('selectedFiles ', selectedFiles);
+
+	const handleUpload  = async (e) => {
+		try {
+			e.preventDefault()
+			const currentFile = selectedFiles[0]
+			let formData = new FormData()
+			formData.append('avatar' , currentFile)
+			console.log(formData);
+			const result = await axios.post(`${server}/upload/${data.user.name}` , formData  , {
+				headers : {
+					'Content-Type' : 'multipart/form-data'
+				}
+			})
+			dispatch(addUser(result.data));
+			//console.log('upload ' , result);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<>
 			<Button
@@ -78,15 +114,17 @@ const SettingMenu = (props) => {
 			</Button>
 			<Offcanvas show={show} onHide={() => setshow(false)} style={style}>
 				<Offcanvas.Header closeButton>
+					
 					<Container
 						fluid
 						className="d-flex justify-content-center align-items-center flex-column"
 					>
 						<div>
-							<div>
+							<div className='profil-container'>
 								<Image
 									src={"http://localhost:5000/profil/" + data.user.avatar}
 									className="profil border"
+									alt={data.user.name}
 								/>
 							</div>
 
@@ -98,28 +136,18 @@ const SettingMenu = (props) => {
 									<div className="popover">
 										<Form
 											method="POST"
-											action="http://localhost:5000/upload"
 											enctype="multipart/form-data"
-											className="m-3"
+											className="p-2 border"
+											onSubmit={handleUpload}
 										>
-											<Form.Text className="text-warning mb-0">
-												<h6>
-													The update will display in the <br />
-													next log in.Please, log out and <br />
-													log in again to see change.
-												</h6>
-											</Form.Text>
-											<Form.Group controlId="formBasicEmail" className="fgroup">
-												<Form.Label> </Form.Label>
-												<Form.Control type="file" name="avatar" />
-												<Form.Control
-													name="name"
-													type="text"
-													className="visually-hidden"
-													value={data.user.name}
-													readOnly
-												/>
-												<Button type="submit">ok</Button>
+											
+											<Form.Group controlId="formBasicEmail" className="d-flex">
+												
+												<Form.Control type="file" onChange={selectFile} />
+											
+												<Button className='ms-1' type="submit" variant='outline-primary'>
+													<RiUploadCloud2Fill style={{fontSize:"20px"}} />
+												</Button>
 											</Form.Group>
 										</Form>
 									</div>
@@ -131,7 +159,7 @@ const SettingMenu = (props) => {
 						<h1 className="display-6 mt-4">{data.user.name}</h1>
 					</Container>
 				</Offcanvas.Header>
-				<Offcanvas.Body className="p-4">
+				<Offcanvas.Body className="m-3 mt-0 ">
 					<ListGroup>
 						<ListGroup.Item style={style} className="item">
 							{!dark ? darkmode : lightmode}
@@ -144,18 +172,19 @@ const SettingMenu = (props) => {
 								className="link"
 								
 							>
-								<RiLogoutCircleFill /> Log out
+								<RiLogoutCircleFill  className='ri'  /> Log out
 							</Link>
 						</ListGroup.Item>
 					</ListGroup>
 					<Container className='author small'>
-						Chat app v0.0.1 <br />
+						
+						Chat app v0.0.2 <br />
 						RASOLOMANANA Herimanitra Olivier <br />
 						<div className="d-flex justify-content-around mt-3">
-							<Link to=""><RiFacebookCircleFill style={{fontSize:"25px"}} /></Link>
-							<Link to=""><RiGithubFill color='black' style={{fontSize:"25px"}}/></Link>
-							<Link to=""><RiInstagramFill color='blue' style={{fontSize:"25px"}}/></Link>
-							<Link to=""><RiGoogleFill color='black' style={{fontSize:"25px"}}/></Link>
+							<Link to="" target='_blank'><RiFacebookCircleFill style={{fontSize:"25px"}} /></Link>
+							<Link to="" target='_blank'><RiGithubFill color='black' style={{fontSize:"25px"}}/></Link>
+							<Link to="" target='_blank'><RiInstagramFill color='blue' style={{fontSize:"25px"}}/></Link>
+							<Link to="" target='_blank'><RiGoogleFill color='black' style={{fontSize:"25px"}}/></Link>
 						</div>
 					</Container>
 				</Offcanvas.Body>

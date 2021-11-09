@@ -22,10 +22,21 @@
 	height: 60px;
 	/*position: relative;
     top: -5px;*/
+	transition: all 0.3s;
+}
+.pdp-container{
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
 }
 .pdp Image {
 	font-size: 40px;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.459);
+}
+.pdp:hover{
+	width: 70px;
+	height: 70px;
 }
 .position {
 	position: relative;
@@ -74,13 +85,13 @@
 }
 
 #popover-menu {
-	padding: 2rem;
+	padding: 1rem;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.308);
 	border-width: 0;
 }
 
 .setting {
-	position: absolute;
+	position: fixed;
 	left: 1rem;
 	top: 1rem;
 }
@@ -94,12 +105,69 @@
 
 .actif-status {
 	position: relative;
-	top: 1.2rem;
-	left: -1.2rem;
+	top: -1.2rem;
+	left: 2.5rem;
 	font-size: 17px;
 	border-radius: 50%;
 	background-color: white;
 
+}
+
+.listItem{
+	height: 5rem;
+	border : 2px solid ;
+	border-image: linear-gradient(30deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+}
+.listItem:hover{
+	animation: b-anim 1s linear infinite;
+}
+@-webkit-keyframes b-anim{
+	0%{
+		border-image: linear-gradient(30deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	30%{
+		border-image: linear-gradient(90deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	50%{
+		border-image: linear-gradient(180deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	80%{
+		border-image: linear-gradient(270deg ,rgb(98, 0, 255),rgb(253, 0, 253) ) 1;
+	}
+	100%{
+		border-image: linear-gradient(360deg, rgb(98, 0, 255) ,rgb(253, 0, 253)) 1;
+	}
+}
+@keyframes b-anim {
+	0%{
+		border-image: linear-gradient(30deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	30%{
+		border-image: linear-gradient(90deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	50%{
+		border-image: linear-gradient(180deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	80%{
+		border-image: linear-gradient(270deg ,rgb(98, 0, 255),rgb(253, 0, 253) ) 1;
+	}
+	100%{
+		border-image: linear-gradient(360deg, rgb(98, 0, 255) ,rgb(253, 0, 253)) 1;
+	}
+}
+
+
+.notification-badge{
+	border-radius: 10px;
+}
+
+.message-header , .bg-radient{
+	background: linear-gradient(30deg,rgb(248, 26, 248),rgb(119, 4, 226),blue  );
+}
+
+.ri-1{
+	font-size: 15px;
+	margin-right: 4px;
 }
 
 

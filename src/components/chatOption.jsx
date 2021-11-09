@@ -33,10 +33,11 @@ const Menu = () => {
 			placement="left-start"
 			overlay={
 				<Popover id="popover-menu">
+					<h4>Setting</h4>
 					<p>
-						<ListGroup>
-							<ListGroup.Item action onClick={handleDeletion}>
-								<RiDeleteBin5Fill color="#c00" /> Delete this message
+						<ListGroup >
+							<ListGroup.Item action onClick={handleDeletion} className='border-0 ps-1'>
+								<RiDeleteBin5Fill color="#c00" className='ri-1' /> Delete this message
 							</ListGroup.Item>
 						</ListGroup>
 					</p>
