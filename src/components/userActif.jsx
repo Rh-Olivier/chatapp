@@ -4,8 +4,7 @@ import {
 	Container,
 	Row,
 	Col,
-	Badge,
-	ListGroup,
+	Badge
 } from "react-bootstrap";
 import { RiCheckboxBlankCircleFill } from "react-icons/ri";
 import { ModeContext } from "../context/mode";
@@ -14,6 +13,8 @@ import { addMessage } from "../data/messageSlice";
 import new_interaction from "../api/new-interaction";
 import { addOneMessage, updateOneMessage } from "../data/allmessageSlice";
 import seenUpdate from "../api/seen";
+import { useNavigate } from "react-router-dom";
+
 
 const find = (ar, u) => {
 	let isActif = false;
@@ -28,6 +29,7 @@ const find = (ar, u) => {
 const Userbox = (props) => {
 	const context = useContext(ModeContext);
 	const dispatch = useDispatch();
+	const navigate = useNavigate()
 
 	const actifStatus = (
 		<RiCheckboxBlankCircleFill
@@ -86,6 +88,9 @@ const Userbox = (props) => {
 
 					// ADD THE NEW MSG TO THE UI
 					dispatch(addMessage(result));
+
+					// NAVIGATE TO THE MATCHING MESSAGE
+					navigate('/home/message')
 				})
 				.catch((err) => {
 					console.log("error while update seen", err);
@@ -107,7 +112,7 @@ const Userbox = (props) => {
 			onClick={handleCurrentMessage}
 		>
 			<Row>
-				<Col lg="3">
+				<Col className=''>
 					<div className="pdp-container">
 						<Image
 							src={"http://localhost:5000/profil/" + props.user.avatar}
@@ -117,16 +122,12 @@ const Userbox = (props) => {
 
 					{actifStatus}
 				</Col>
-				<Col className="userInfo" lg="6">
-					<Container
-						fluid
-						className="d-flex flex-column"
-						style={{ position: "relative", right: "2rem" }}
-					>
-						<div style={{ color: context.color }}>{props.user.name}</div>
-					</Container>
+				<Col className="userInfo" xs={5} >
+					
+						<div style={{ color: context.color }} >{props.user.name}</div>
+					
 				</Col>
-				<Col>
+				<Col  className=''>
 					{seen ? null : (
 						<Badge bg="info" className="notification-badge">
 							new

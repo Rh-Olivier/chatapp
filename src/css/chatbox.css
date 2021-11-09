@@ -1,16 +1,50 @@
 .header {
 	height: 12vh;
-	margin-top: 1rem;
+
+}
+.header-message {
+	height: 12vh;
+	padding-top: 1rem;
+	border-radius: 0.6em;
 }
 
-.body {
-	height: 67vh;
+.back{
+	position: absolute;
+	top: 10px; left: 15px;
+	font-size: 22px;
+	cursor: pointer;
+	transition: font-size 0.3s;
+}
+.back:hover , .back:focus{
+	font-size: 24px;
+}
 
+.body-friend {
+	height: 78vh;
+
+}
+.body-message{
+	height: 65vh;
 }
 
 .footer {
 	height: 14vh;
-	margin-bottom: 0.8rem;
+	border-radius: 0.6em;
+}
+
+.messageContainer{
+	height: 100vh;
+	padding-top: 2.5rem;
+}
+
+.chatmenu-container{
+	padding: 10px;
+	height: 100vh;
+	padding: 0;
+}
+.chatmenu-innercontainer{
+	position: relative;
+	top: 3.5rem;
 }
 
 .overflow > ul > li {
@@ -52,13 +86,7 @@
 	border-radius: 5px 0 5px 5px;
 	list-style: none;
 }
-.more-option-user{
-    position: relative;
-    right: 8.5rem;
-    font-size: 25px;
-    color: slategray;
-    cursor: pointer;
-}
+
 .friend-sms {
 	margin-bottom: 1rem;
 	margin-left: 1rem;
@@ -67,13 +95,7 @@
 	border-radius: 0 5px 5px 5px;
 	list-style: none;
 }
-.more-option-friend{
-    position: relative;
-    left: 8.5rem;
-    font-size: 25px;
-    color: slategray;
-    cursor: pointer;
-}
+
 .friend-box {
 	position: relative;
 	right: 2rem;
@@ -92,8 +114,8 @@
 
 .setting {
 	position: fixed;
-	left: 1rem;
-	top: 1rem;
+	left: 1.5rem;
+	top: 0.5rem;
 }
 
 .pl-dark {
@@ -117,10 +139,16 @@
 	height: 5rem;
 	border : 2px solid ;
 	border-image: linear-gradient(30deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	cursor: pointer;
 }
 .listItem:hover{
 	animation: b-anim 1s linear infinite;
 }
+
+
+
+
+
 @-webkit-keyframes b-anim{
 	0%{
 		border-image: linear-gradient(30deg ,rgb(98, 0, 255), rgb(253, 0, 253)) 1;

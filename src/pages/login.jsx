@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import { RiEyeCloseFill, RiEyeFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
-import { Redirect } from "react-router";
+import { useNavigate } from "react-router-dom";
 import postNewAccount from "../api/create-new-account";
 import login_process from "../api/login-api";
 import "../css/login.css";
@@ -63,7 +63,8 @@ const Login = () => {
 			.catch((err) => console.log(err));
 	};
 
-	if (authorized) return <Redirect to="/home" />;
+	const navigate = useNavigate()
+	if (authorized) navigate('/home/friend')
 	if (login) {
 		return (
 			<Container fluid>
@@ -82,6 +83,10 @@ const Login = () => {
 					</Col>
 					<Col>
 						<Form className="login-box" onSubmit={handleLoginSubmission}>
+							<Form.Text className="display-2 mb-2">
+								<h1>Login</h1>
+							</Form.Text>
+							
 							<Form.Group controlId="formBasicEmail" className="mb-2">
 								<Form.Label>Email address</Form.Label>
 								<Form.Control

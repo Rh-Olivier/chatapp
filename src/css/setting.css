@@ -1,77 +1,88 @@
-.link{
-    text-decoration: none;
+.link {
+	text-decoration: none;
 }
 
-.item{
-    border-width: 0 0 1px 0;
-    border-color: rgba(145, 144, 144, 0.548);
-    margin-bottom: 5px;
-    border-radius: 0;
+.item {
+	border-width: 0 0 1px 0;
+	border-color: rgba(145, 144, 144, 0.548);
+	margin-bottom: 5px;
+	border-radius: 0;
 }
 
-.change-profil{
-    position: absolute;
-    top: 6.3rem;
-    left: 13.5rem;
-    color: rgb(173, 0, 226);
-    font-size: 28px;
-    background-color: #fff;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s;
+.change-profil {
+	position: absolute;
+	top: 6.3rem;
+	left: 12.3rem;
+	color: rgb(173, 0, 226);
+	font-size: 28px;
+	background-color: #fff;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.2s;
 }
-.change-profil:hover{
-    color: rgb(139, 3, 173);
-
-}
-
-.popover{
-    position: absolute;
-    top: 8.5rem;
-    left: 5rem;
-    box-shadow: 0 0 3px rgba(41, 40, 40, 0.212);
-    border-width: 0;
-}
-.profil-container{
-    position: relative;
-    top: 1rem;
-    width: 102px;
-    height: 102px;
-    overflow: hidden;
-    border-radius: 50%;
+.change-profil:hover {
+	color: rgb(139, 3, 173);
+	animation: rotate-frame 0.5s linear 1;
 }
 
-.profil{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    
-    transition: width 0.3s , height 0.3s ;
-}
-.profil:hover{
-    width: 115px;
-    height: 115px;
-    position: relative;
-}
-
-
-.author{
-    position: absolute;
-    bottom: 3rem;
-    width: 22rem;
-  
-    font-size: smaller;
-    padding-top: 13px;
-    border-top: 1px solid rgba(29, 29, 131, 0.295);
+@keyframes rotate-frame {
+	0% {
+		rotate: 0deg ;
+	}
+	25% {
+		rotate: 60deg ;
+	}
+	50% {
+		rotate: 120deg ;
+	}
+	75% {
+		rotate: 180deg;
+	}
+	100% {
+		rotate: 360deg ;
+	}
 }
 
-
-.ri{
-    font-size: 20px;
-    margin-right: 5px;
-
+.popover {
+	position: absolute;
+	top: 8.5rem;
+	left: 5rem;
+	box-shadow: 0 0 3px rgba(41, 40, 40, 0.212);
+	border-width: 0;
+}
+.profil-container {
+	position: relative;
+	top: 1rem;
+	width: 102px;
+	height: 102px;
+	overflow: hidden;
+	border-radius: 50%;
 }
 
+.profil {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
 
+	transition: width 0.3s, height 0.3s;
+}
+.profil:hover {
+	width: 115px;
+	height: 115px;
+	position: relative;
+}
 
+.author {
+	position: absolute;
+	bottom: 3rem;
+	width: 22rem;
 
+	font-size: smaller;
+	padding-top: 13px;
+	border-top: 1px solid rgba(29, 29, 131, 0.295);
+}
+
+.ri {
+	font-size: 20px;
+	margin-right: 5px;
+}

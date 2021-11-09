@@ -36,18 +36,7 @@ const Message = ({ setUrl , scroll }) => {
 
 	// Current message viewed in the ui
 	const messageRedux = useSelector((state) => state.message);
-	useEffect(() => {
-		//console.log('user ' , user.user.name);
-		fetchDefaultMessage(user.user.name)
-			.then((result) => {
-				console.log(result);
-				dispatch(addMessage(result))
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-			// eslint-disable-next-line 
-	}, []);
+
 	useEffect(() => {
 		if (messageRedux.hasOwnProperty("user")) {
 			//console.log("msg redux ", messageRedux);

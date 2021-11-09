@@ -44,8 +44,8 @@ const Menu = () => {
 				</Popover>
 			}
 		>
-			<Button variant="white" >
-				<RiMenu3Line color="white" style={{ width: "25px", height: "25px" }} />
+			<Button variant="white"  >
+				<RiMenu3Line color="white" style={{ width: "23px", height: "23px" }} />
 			</Button>
 		</OverlayTrigger>
 	);

@@ -114,11 +114,12 @@ const ChatMenu = () => {
 	};
 	return (
 		<Container
-			className="shadow mt-1 p-5 chatmenu-container"
+			fluid
+			className="shadow chatmenu-innercontainer "
 			style={{ backgroundColor: context.bg, color: context.color }}
 		>
 			<Row className="header">
-				<Col>
+				<Col className='pt-3'>
 					<Form
 						className="d-flex justify-content-around"
 						onSubmit={handleSearch}
@@ -144,8 +145,8 @@ const ChatMenu = () => {
 					Ooops! not found{" "}
 				</p>
 			</Row>
-			<Row>
-				<ListGroup className="body position overflow ">
+			<Row className='ps-1'>
+				<ListGroup className="body-friend position overflow p-2 ">
 					{users.length === 0 ? (
 						<div></div>
 					) : (
