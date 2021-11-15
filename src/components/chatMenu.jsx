@@ -115,10 +115,10 @@ const ChatMenu = () => {
 	return (
 		<Container
 			fluid
-			className="shadow chatmenu-innercontainer "
+			className="chatmenu-innercontainer "
 			style={{ backgroundColor: context.bg, color: context.color }}
 		>
-			<Row className="header">
+			<Row className=" header">
 				<Col className='pt-3'>
 					<Form
 						className="d-flex justify-content-around"
@@ -136,7 +136,7 @@ const ChatMenu = () => {
 							variant={context.dark ? "light" : "white"}
 							type="submit"
 						>
-							<RiSearch2Line color="blue" />
+							<RiSearch2Line  />
 						</Button>
 					</Form>
 				</Col>
@@ -145,7 +145,7 @@ const ChatMenu = () => {
 					Ooops! not found{" "}
 				</p>
 			</Row>
-			<Row className='ps-1'>
+			<Row className='ps-1 list-container'>
 				<ListGroup className="body-friend position overflow p-2 ">
 					{users.length === 0 ? (
 						<div></div>

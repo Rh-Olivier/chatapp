@@ -20,6 +20,7 @@ import {
 	RiGithubFill,
 	RiGoogleFill,
 	RiUserSettingsFill,
+	RiErrorWarningFill,
 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { ModeContext, themes } from "../context/mode";
@@ -29,6 +30,7 @@ import server from "../api/config";
 import { socket } from "../api/socket";
 import axios from "axios";
 import { addUser } from "../data/userSlice";
+import { GiFire } from "react-icons/gi";
 
 const SettingMenu = (props) => {
 	const [show, setshow] = useState(false);
@@ -108,13 +110,15 @@ const SettingMenu = (props) => {
 
 	return (
 		<>
-			<Button
-				variant={dark ? "light" : "outline-primary"}
-				style={{ boxShadow: "0 0 10px rgba(0,0,0,0.1)" }}
-				onClick={() => setshow(true)}
-			>
-				<RiSettingsFill />
-			</Button>
+			<div className='p-2 bg-setting' onClick={() => setshow(true)}>
+				<RiSettingsFill className='setting-icon' />
+				
+			</div>
+			<div className='logo'>
+				<GiFire style={{fontSize:'25px'}} className='me-3' /> <span className='logo-title'> Fire chat</span>
+			</div>
+			
+
 			<Offcanvas show={show} onHide={() => setshow(false)} style={style}>
 				<Offcanvas.Header closeButton>
 					<Container
@@ -150,7 +154,10 @@ const SettingMenu = (props) => {
 													type="submit"
 													variant="outline-primary"
 												>
-													<RiUploadCloud2Fill style={{ fontSize: "20px" }} className='rotate-anim' />
+													<RiUploadCloud2Fill
+														style={{ fontSize: "20px" }}
+														className="rotate-anim"
+													/>
 												</Button>
 											</Form.Group>
 										</Form>
@@ -164,14 +171,20 @@ const SettingMenu = (props) => {
 					</Container>
 				</Offcanvas.Header>
 				<Offcanvas.Body className="m-3 mt-0 ">
-					<ListGroup style={{borderRadius : '0'}}>
+					<ListGroup style={{ borderRadius: "0" }}>
 						<ListGroup.Item style={style} className="item">
 							{!dark ? darkmode : lightmode}
 						</ListGroup.Item>
 
 						<ListGroup.Item style={style} className="item">
 							<Link to="/home/account" style={style} className="link">
-								<RiUserSettingsFill className="ri" color='green' /> Account
+								<RiUserSettingsFill className="ri" color="green" /> Account
+							</Link>
+						</ListGroup.Item>
+
+						<ListGroup.Item style={style} className="item">
+							<Link to="/home/about" style={style} className="link">
+								<RiErrorWarningFill className="ri" color="blue" /> About
 							</Link>
 						</ListGroup.Item>
 
@@ -184,6 +197,7 @@ const SettingMenu = (props) => {
 								<RiLogoutCircleFill className="ri" /> Log out
 							</Link>
 						</ListGroup.Item>
+						
 					</ListGroup>
 					<Container className="author small">
 						Chat app v0.0.2 <br />

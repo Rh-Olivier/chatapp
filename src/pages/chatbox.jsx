@@ -10,6 +10,7 @@ import { Routes, Route } from "react-router-dom";
 import ListFriend from "./listFriend";
 import MessagePage from "./messagePage";
 import Account from "./account";
+import About from "./about";
 
 const Chatbox = (props) => {
 	const context = useContext(ModeContext);
@@ -45,6 +46,8 @@ const Chatbox = (props) => {
 				<Route path="message" element={<MessagePage />} />
 
 				<Route path="account" element={<Account />} />
+
+				<Route path="about" element={<About />} />
 			</Routes>
 		</Container>
 	);

@@ -11,6 +11,7 @@ import Bg from "../assets/path857.png";
 import Bg2 from "../assets/path960.png";
 import Bg3 from "../assets/path857.png";
 import Bg5 from "../assets/bg5.png";
+import { GiFire } from "react-icons/gi";
 
 
 
@@ -83,6 +84,10 @@ const Login = () => {
 					</Col>
 					<Col>
 						<Form className="login-box" onSubmit={handleLoginSubmission}>
+							<div className='login-logo d-flex flex-column justify-content-center align-items-center'>
+								<GiFire style={{fontSize:'36px'}}/>
+								<span>Fire Chat</span>
+							</div>
 							<Form.Text className="display-2 mb-2">
 								<h1>Login</h1>
 							</Form.Text>
@@ -126,7 +131,7 @@ const Login = () => {
 								type="submit"
 								className="w-100 mt-4 mb-3"
 							>
-								Submit
+								Log in
 							</Button>
 							<Form.Text className="click ">
 								or{" "}

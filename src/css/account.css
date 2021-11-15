@@ -8,6 +8,28 @@
     top: 3rem;
     
 }
+.navigation{
+    background: linear-gradient(330deg,rgb(248, 26, 248),rgb(40, 2, 252) );
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 92vw;
+    height: 3.5rem;padding-top: 0.9rem;
+    box-shadow: 0px 3px 5px rgba(56, 1, 61, 0.466);
+    color: white;
+    border-radius: 0.5rem;
+}
+.back-account{
+    
+    width: 25px;
+    height: 25px;
+    transition: all 0.2s;
+
+}
+.back-account:hover{
+    border: 2px solid white;
+    border-radius: 50%;
+}
 .header-form-account{
     background: linear-gradient(330deg,rgb(248, 26, 248),rgb(40, 2, 252)  );
     color: white;
@@ -15,7 +37,7 @@
     padding: 1rem;
     padding-left: 3rem;
     position: relative;
-    right: 2rem;
+    right: 3rem;
     margin-bottom: 1.5rem;
     border-radius: 0 8px 8px 0;
 
@@ -39,6 +61,12 @@
     position: relative;
     left: 14rem;
     bottom: 2rem;
+}
+
+/*-- Accordion position --*/
+.accordion-position{
+    position: relative;
+    top: 5rem;
 }
 
 @keyframes slide {

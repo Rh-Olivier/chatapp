@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { Form, Button, Container } from "react-bootstrap";
-import { RiEyeCloseFill, RiEyeFill,RiArrowLeftLine } from "react-icons/ri";
+import { Form, Button, Container, Accordion } from "react-bootstrap";
+import { RiEyeCloseFill, RiEyeFill, RiArrowLeftLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
-import '../css/account.css'
+import "../css/account.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { addUser } from "../data/userSlice";
 import server from "../api/config";
-
+import { fetchAllMessage } from "../data/allmessageSlice";
 
 const Account = () => {
 	const [showPassword, setshowPassword] = useState(false);
 
 	const user = useSelector((state) => state.user.user);
-    const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const [info, setinfo] = useState({
 		name: user.name,
@@ -30,84 +30,131 @@ const Account = () => {
 
 	const handleChangeSubmission = (e) => {
 		e.preventDefault();
-        axios.put(server+'/update-account' , {
-            oldname : user.name,
-            name : info.name ,
-			email : info.email ,
-			password : info.password
-        })
-            .then((update) => {
-                console.log(update.data);
-                dispatch(addUser(update.data))
-                navigate('/home/friend')
-            }).catch((err) => {
-                console.log(err);
-            });
+		axios
+			.put(server + "/update-account", {
+				oldname: user.name,
+				name: info.name,
+				email: info.email,
+				password: info.password,
+			})
+			.then((update) => {
+				console.log(update.data);
+				dispatch(addUser(update.data.user));
+				dispatch(fetchAllMessage(update.data.messages))
+				navigate("/home/friend");
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	};
 
-    const navigate = useNavigate()
-    const goBack  = () => {
-		navigate('/home/friend')
+	const navigate = useNavigate();
+	const goBack = () => {
+		navigate("/home/friend");
 	};
 	return (
 		<Container className="fade-anim outer-container-form-account" fluid>
-            <RiArrowLeftLine className='back' onClick={() => goBack()}/>
-			<Form
-				className="container-account-form shadow"
-				onSubmit={handleChangeSubmission}
-			>
-				<Form.Text>
-					<h4 className="header-form-account">Update my info</h4>
-				</Form.Text>
-				<Form.Group controlId="formBasicEmail" className="mb-3">
-					<Form.Label>Email address</Form.Label>
-					<Form.Control
-						type="email"
-						placeholder="johndoe@gmail.com"
-						name="email"
-						onChange={handleChange}
-						value={info.email}
-					/>
-				</Form.Group>
-				<Form.Group controlId="formBasicName" className="mb-3">
-					<Form.Label>Name</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="John Doe"
-						name="name"
-						onChange={handleChange}
-						value={info.name}
-					/>
-				</Form.Group>
-				<Form.Group controlId="formBasicPassword" className="mb-3">
-					<Form.Label>Password</Form.Label>
-					<Form.Control
-						type={showPassword ? "text" : "password"}
-						placeholder="Password"
-						name="password"
-						onChange={handleChange}
-						value={info.password}
-					/>
+			<div className="navigation d-flex justify-content-start ps-1">
+				<RiArrowLeftLine
+					className="back-account ms-2 me-4"
+					onClick={() => goBack()}
+				/>
+				<h4 className="">Account</h4>
+			</div>
+			<Accordion defaultActiveKey="0" className="accordion-position" >
+				<Accordion.Item eventKey="0" >
+					<Accordion.Header className="">Change name</Accordion.Header>
+					<Accordion.Body className="">
+						<Form className="" onSubmit={handleChangeSubmission}>
+							
+							<Form.Group controlId="formBasicName" className="mb-3">
+								<Form.Label>Name</Form.Label>
+								<Form.Control
+									type="text"
+									placeholder="John Doe"
+									name="name"
+									onChange={handleChange}
+									value={info.name}
+								/>
+							</Form.Group>
+						
+							<div className="btn-container">
+								<Button type="submit" className="w-100 mt-4 mb-3 button">
+									Save change
+								</Button>
+							</div>
+						</Form>
+					</Accordion.Body>
+				</Accordion.Item>
 
-					{!showPassword ? (
-						<RiEyeCloseFill
-							onClick={() => setshowPassword(!showPassword)}
-							className="password-account"
-						/>
-					) : (
-						<RiEyeFill
-							className="password-account"
-							onClick={() => setshowPassword(!showPassword)}
-						/>
-					)}
-				</Form.Group>
-				<div className="btn-container">
-                    
-						<Button  type="submit" className="w-100 mt-4 mb-3 button">
-							Save change
-						</Button>
-				</div>
-			</Form>
+				<Accordion.Item eventKey="1">
+					<Accordion.Header className="">Change email</Accordion.Header>
+					<Accordion.Body className="">
+						<Form className="" onSubmit={handleChangeSubmission}>
+							<Form.Group controlId="formBasicEmail" className="mb-3">
+								<Form.Label>Email address</Form.Label>
+								<Form.Control
+									type="email"
+									placeholder="johndoe@gmail.com"
+									name="email"
+									onChange={handleChange}
+									value={info.email}
+								/>
+							</Form.Group>
+							
+							
+							<div className="btn-container">
+								<Button type="submit" className="w-100 mt-4 mb-3 button">
+									Save change
+								</Button>
+							</div>
+						</Form>
+					</Accordion.Body>
+				</Accordion.Item>
+
+				<Accordion.Item eventKey="2">
+					<Accordion.Header className="">Change password</Accordion.Header>
+					<Accordion.Body className="">
+						<Form className="" onSubmit={handleChangeSubmission}>
+							
+							<Form.Group controlId="formBasicPassword" className="mb-3">
+								<Form.Label>Password</Form.Label>
+								<Form.Control
+									type={showPassword ? "text" : "password"}
+									placeholder="Password"
+									name="password"
+									onChange={handleChange}
+									value={info.password}
+								/>
+
+								{!showPassword ? (
+									<RiEyeCloseFill
+										onClick={() => setshowPassword(!showPassword)}
+										className="password-account"
+									/>
+								) : (
+									<RiEyeFill
+										className="password-account"
+										onClick={() => setshowPassword(!showPassword)}
+									/>
+								)}
+							</Form.Group>
+							<div className="btn-container">
+								<Button type="submit" className="w-100 mt-4 mb-3 button">
+									Save change
+								</Button>
+							</div>
+						</Form>
+					</Accordion.Body>
+				</Accordion.Item>
+				
+				<Accordion.Item eventKey="3">
+					<Accordion.Header>Remove my account</Accordion.Header>
+					<Accordion.Body>
+						Duis aute irure dolor in reprehenderit in voluptate velit.
+					</Accordion.Body>
+				</Accordion.Item>
+			</Accordion>
 		</Container>
 	);
 };
