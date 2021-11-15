@@ -14,6 +14,7 @@ import new_interaction from "../api/new-interaction";
 import { addOneMessage, updateOneMessage } from "../data/allmessageSlice";
 import seenUpdate from "../api/seen";
 import { useNavigate } from "react-router-dom";
+import server from "../api/config"
 
 
 const find = (ar, u) => {
@@ -115,7 +116,7 @@ const Userbox = (props) => {
 				<Col className=''>
 					<div className="pdp-container">
 						<Image
-							src={"http://localhost:5000/profil/" + props.user.avatar}
+							src={server+"/profil/" + props.user.avatar}
 							className="pdp rounded-circle border"
 						/>
 					</div>
