@@ -7,10 +7,7 @@ import postNewAccount from "../api/create-new-account";
 import login_process from "../api/login-api";
 import "../css/login.css";
 import { addUser } from "../data/userSlice";
-import Bg from "../assets/path857.png";
-import Bg2 from "../assets/path960.png";
-import Bg3 from "../assets/path857.png";
-import Bg5 from "../assets/bg5.png";
+
 import { GiFire } from "react-icons/gi";
 
 
