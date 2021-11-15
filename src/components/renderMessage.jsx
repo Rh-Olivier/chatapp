@@ -3,7 +3,6 @@ import { Image } from "react-bootstrap";
 import server from "../api/config";
 import { useDispatch, useSelector } from "react-redux";
 //import axios from "axios";
-import fetchDefaultMessage from "../api/defaultMessage";
 import { io } from "socket.io-client";
 import { updateOneMessage } from "../data/allmessageSlice";
 import { addMessage } from "../data/messageSlice";
