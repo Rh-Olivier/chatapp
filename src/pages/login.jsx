@@ -69,8 +69,7 @@ const Login = () => {
 	if (login) {
 		return (
 			<Container fluid>
-				<img src={Bg} alt="" className="bg-top" />
-				<img src={Bg5} alt="" className="bg-bottom" />
+				
 				<Row>
 					<Col className="welcome">
 						<h1 className="display-1  tracking-in-contract-bck">Welcome</h1>
@@ -150,7 +149,7 @@ const Login = () => {
 	} else {
 		return (
 			<Container fluid>
-				<img src={Bg3} alt="" className="bg-top" />
+		
 			
 				<Row>
 					<Col className="welcome">
@@ -221,7 +220,7 @@ const Login = () => {
 						</Form>
 					</Col>
 				</Row>
-					<img src={Bg5} alt="" className="bg-bottom-2" />
+				
 			</Container>
 		);
 	}
