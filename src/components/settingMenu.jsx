@@ -128,7 +128,7 @@ const SettingMenu = (props) => {
 						<div>
 							<div className="profil-container">
 								<Image
-									src={"http://localhost:5000/profil/" + data.user.avatar}
+									src={server+"/profil/" + data.user.avatar}
 									className="profil border"
 									alt={data.user.name}
 								/>
