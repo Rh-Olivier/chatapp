@@ -1,20 +1,22 @@
 .link {
 	text-decoration: none;
 }
-.logo{
+.logo {
 	position: absolute;
-	left: 14rem;
+	left: 11rem;
 	top: 0rem;
 	display: flex;
 	width: 7rem;
 }
-.logo-title{
+.logo-title {
 	font-size: 18px;
 }
 .item {
 	border-width: 0 0 1px 0;
 	border-color: rgba(145, 144, 144, 0.548);
 	margin-bottom: 5px;
+	margin-left: 15px;
+	margin-right: 15px;
 	border-radius: 0;
 }
 
@@ -36,19 +38,19 @@
 
 @keyframes rotate-frame {
 	0% {
-		rotate: 0deg ;
+		rotate: 0deg;
 	}
 	25% {
-		rotate: 60deg ;
+		rotate: 60deg;
 	}
 	50% {
-		rotate: 120deg ;
+		rotate: 120deg;
 	}
 	75% {
 		rotate: 180deg;
 	}
 	100% {
-		rotate: 360deg ;
+		rotate: 360deg;
 	}
 }
 
@@ -82,16 +84,29 @@
 }
 
 .author {
-	position: absolute;
-	bottom: 3rem;
-	width: 22rem;
-
 	font-size: smaller;
-	padding-top: 13px;
-	border-top: 1px solid rgba(29, 29, 131, 0.295);
+	margin-top: 25px;
 }
 
 .ri {
 	font-size: 20px;
 	margin-right: 5px;
+}
+
+.listgroup-set {
+	height: 87vw;
+	width: 80vw;
+	overflow-y: hidden;
+	position: fixed;
+}
+
+@media screen and (min-width: 350px) and (max-width: 400px) {
+	.logo {
+		left: 13rem;
+	}
+}
+@media screen and (max-width: 340px) {
+	.change-profil {
+		left: 11rem;
+	}
 }

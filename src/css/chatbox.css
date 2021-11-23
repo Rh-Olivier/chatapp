@@ -36,11 +36,11 @@
 	height: 75vh;
 }
 .body-message {
-	height: 65vh;
+	height: 63vh;
 }
 
 .footer {
-	height: 14vh;
+	height: 5rem;
 	border-radius: 0.6em;
 }
 
@@ -55,11 +55,10 @@
 	padding: 0;
 }
 .chatmenu-innercontainer {
-	position:absolute;
+	position: absolute;
 	top: 4rem;
 	left: 0;
 	height: 88vh;
-	
 }
 
 .overflow > ul > li {
@@ -88,7 +87,7 @@
 	height: 70px;
 }
 
-.list-container{
+.list-container {
 	position: relative;
 }
 .position {
@@ -137,21 +136,24 @@
 	top: 1rem;
 	z-index: 5;
 }
-.setting-icon{
-	width: 22px;height: 22px;
+.setting-icon {
+	width: 22px;
+	height: 22px;
 	color: rgb(0, 0, 0);
 	transition: all 0.2s;
 	background-color: transparent;
 	position: relative;
-	top: -5px;right: 2px;
+	top: -5px;
+	right: 2px;
 }
-.bg-setting{
+.bg-setting {
 	background-color: rgba(218, 212, 212, 0.315);
 	border-radius: 50%;
-	width: 34px;height: 34px;
+	width: 34px;
+	height: 34px;
 	cursor: pointer;
 }
-.bg-setting:hover{	
+.bg-setting:hover {
 	background-color: rgba(153, 152, 152, 0.705);
 }
 

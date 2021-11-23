@@ -4,7 +4,7 @@ import server from "./config";
 
 const postNewAccount = async (name , password , email) => {
     try {
-       const result = await axios.post(`http://${server}/new-account` , {
+       const result = await axios.post(`${server}/new-account` , {
            name , password , email
        }) 
        return result

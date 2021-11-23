@@ -5,7 +5,7 @@ import { RiSearch2Line } from "react-icons/ri";
 import { ModeContext } from "../context/mode";
 import Userbox from "./userActif";
 import server from "../api/config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allFriend } from "../data/friendsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import socketClient from "socket.io-client";
@@ -30,15 +30,21 @@ const fetchUsers = async () => {
 const ChatMenu = () => {
 	//const [show, setshow] = useState(false);
 	const context = useContext(ModeContext);
-	const [users, setusers] = useState(["Olivier", "Stark", "Romanof"]);
+	const [users, setusers] = useState([]);
 
-	/*const actifList = useSelector((state) => state.actif);*/
+	const user = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		fetchUsers()
 			.then((result) => {
-				setusers(result);
+				let result_filtered = result.map((item) => {
+					if (item.name !== user.user.name) {
+						return item;
+					}
+				});
+
+				setusers(result_filtered);
 				dispatch(allFriend(result));
 			})
 			.catch((err) => {
@@ -119,7 +125,7 @@ const ChatMenu = () => {
 			style={{ backgroundColor: context.bg, color: context.color }}
 		>
 			<Row className=" header">
-				<Col className='pt-3'>
+				<Col className="pt-3">
 					<Form
 						className="d-flex justify-content-around"
 						onSubmit={handleSearch}
@@ -136,7 +142,7 @@ const ChatMenu = () => {
 							variant={context.dark ? "light" : "white"}
 							type="submit"
 						>
-							<RiSearch2Line  />
+							<RiSearch2Line />
 						</Button>
 					</Form>
 				</Col>
@@ -145,15 +151,11 @@ const ChatMenu = () => {
 					Ooops! not found{" "}
 				</p>
 			</Row>
-			<Row className='ps-1 list-container'>
+			<Row className="ps-1 list-container">
 				<ListGroup className="body-friend position overflow p-2 ">
-					{users.length === 0 ? (
-						<div></div>
-					) : (
-						users.map((user) => {
-							return <Userbox key={nanoid()} user={user} actif={actifList} />;
-						})
-					)}
+					{users.map((user) => {
+						return <Userbox key={nanoid()} user={user} actif={actifList} />;
+					})}
 				</ListGroup>
 			</Row>
 		</Container>

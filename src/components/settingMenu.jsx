@@ -31,6 +31,7 @@ import { socket } from "../api/socket";
 import axios from "axios";
 import { addUser } from "../data/userSlice";
 import { GiFire } from "react-icons/gi";
+import Default from "../assets/default_pic.jpg";
 
 const SettingMenu = (props) => {
 	const [show, setshow] = useState(false);
@@ -110,14 +111,13 @@ const SettingMenu = (props) => {
 
 	return (
 		<>
-			<div className='p-2 bg-setting' onClick={() => setshow(true)}>
-				<RiSettingsFill className='setting-icon' />
-				
+			<div className="p-2 bg-setting" onClick={() => setshow(true)}>
+				<RiSettingsFill className="setting-icon" />
 			</div>
-			<div className='logo'>
-				<GiFire style={{fontSize:'25px'}} className='me-3' /> <span className='logo-title'> Fire chat</span>
+			<div className="logo">
+				<GiFire style={{ fontSize: "25px" }} className="me-3" />{" "}
+				<span className="logo-title"> Fire chat</span>
 			</div>
-			
 
 			<Offcanvas show={show} onHide={() => setshow(false)} style={style}>
 				<Offcanvas.Header closeButton>
@@ -128,7 +128,11 @@ const SettingMenu = (props) => {
 						<div>
 							<div className="profil-container">
 								<Image
-									src={"http://localhost:5000/profil/" + data.user.avatar}
+									src={
+										data.user.avatar === "default"
+											? Default
+											: server + "/profil/" + data.user.avatar
+									}
 									className="profil border"
 									alt={data.user.name}
 								/>
@@ -171,7 +175,7 @@ const SettingMenu = (props) => {
 					</Container>
 				</Offcanvas.Header>
 				<Offcanvas.Body className="m-3 mt-0 ">
-					<ListGroup style={{ borderRadius: "0" }}>
+					<ListGroup style={{ borderRadius: "0" }} className="listgroup-set">
 						<ListGroup.Item style={style} className="item">
 							{!dark ? darkmode : lightmode}
 						</ListGroup.Item>
@@ -197,26 +201,7 @@ const SettingMenu = (props) => {
 								<RiLogoutCircleFill className="ri" /> Log out
 							</Link>
 						</ListGroup.Item>
-						
 					</ListGroup>
-					<Container className="author small">
-						Chat app v0.0.2 <br />
-						RASOLOMANANA Herimanitra Olivier <br />
-						<div className="d-flex justify-content-around mt-3">
-							<Link to="" target="_blank">
-								<RiFacebookCircleFill style={{ fontSize: "25px" }} />
-							</Link>
-							<Link to="" target="_blank">
-								<RiGithubFill color="black" style={{ fontSize: "25px" }} />
-							</Link>
-							<Link to="" target="_blank">
-								<RiInstagramFill color="blue" style={{ fontSize: "25px" }} />
-							</Link>
-							<Link to="" target="_blank">
-								<RiGoogleFill color="black" style={{ fontSize: "25px" }} />
-							</Link>
-						</div>
-					</Container>
 				</Offcanvas.Body>
 			</Offcanvas>
 		</>

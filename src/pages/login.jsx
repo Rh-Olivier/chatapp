@@ -10,8 +10,6 @@ import { addUser } from "../data/userSlice";
 
 import { GiFire } from "react-icons/gi";
 
-
-
 const Login = () => {
 	const dispatch = useDispatch();
 	const [login, setlogin] = useState(true);
@@ -61,8 +59,8 @@ const Login = () => {
 			.catch((err) => console.log(err));
 	};
 
-	const navigate = useNavigate()
-	if (authorized) navigate('/home/friend')
+	const navigate = useNavigate();
+	if (authorized) navigate("/home/friend");
 	if (login) {
 		return (
 			<Container fluid>
@@ -79,14 +77,14 @@ const Login = () => {
 					</Col>
 					<Col>
 						<Form className="login-box" onSubmit={handleLoginSubmission}>
-							<div className='login-logo d-flex flex-column justify-content-center align-items-center'>
-								<GiFire style={{fontSize:'36px'}}/>
+							<div className="login-logo d-flex flex-column justify-content-center align-items-center">
+								<GiFire style={{ fontSize: "36px" }} />
 								<span>Fire Chat</span>
 							</div>
 							<Form.Text className="display-2 mb-2">
 								<h1>Login</h1>
 							</Form.Text>
-							
+
 							<Form.Group controlId="formBasicEmail" className="mb-2">
 								<Form.Label>Email address</Form.Label>
 								<Form.Control
@@ -96,7 +94,9 @@ const Login = () => {
 									placeholder="johndoe@gmail.com"
 								/>
 
-								<Form.Control.Feedback tooltip>Looks good!</Form.Control.Feedback>
+								<Form.Control.Feedback tooltip>
+									Looks good!
+								</Form.Control.Feedback>
 								<Form.Text className="text-muted">
 									We'll never share your email with anyone else.
 								</Form.Text>
@@ -109,7 +109,7 @@ const Login = () => {
 									onChange={handleChange}
 									placeholder="Password"
 								/>
-								{showPassword ? (
+								{!showPassword ? (
 									<RiEyeCloseFill
 										onClick={() => setshowPassword(!showPassword)}
 										className="password-login"
@@ -145,7 +145,6 @@ const Login = () => {
 	} else {
 		return (
 			<Container fluid>
-			
 				<Row>
 					<Col className="welcome">
 						<h1 className="display-1  tracking-in-contract-bck">Register</h1>
@@ -186,7 +185,7 @@ const Login = () => {
 									onChange={handleChange}
 								/>
 
-								{showPassword ? (
+								{!showPassword ? (
 									<RiEyeCloseFill
 										onClick={() => setshowPassword(!showPassword)}
 										className="password"

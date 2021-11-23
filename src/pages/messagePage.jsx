@@ -9,7 +9,7 @@ import server from "../api/config";
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { ModeContext } from "../context/mode";
 import { useNavigate } from "react-router";
-import '../css/slide.css'
+import "../css/slide.css";
 
 const days = ["mon", "tue", "wed", "thur", "fri", "sun", "sat"];
 const months = [
@@ -87,15 +87,14 @@ const MessagePage = () => {
 		// eslint-disable-next-line
 	}, [msg]);
 
-
-	const navigate = useNavigate()
-	const goBack  = () => {
-		navigate('/home/friend')
+	const navigate = useNavigate();
+	const goBack = () => {
+		navigate("/home/friend");
 	};
 
 	return (
-		<div className='messageContainer fade-anim'>
-			<RiArrowLeftLine className='back' onClick={() => goBack()}/>
+		<div className="messageContainer fade-anim">
+			<RiArrowLeftLine className="back" onClick={() => goBack()} />
 			<Container
 				fluid
 				className="shadow header-message d-flex justify-content-between message-header"
@@ -113,10 +112,9 @@ const MessagePage = () => {
 						<h5 className="text-white"> {msg.friend} </h5>
 					</div>
 				</div>
-				<div className=''>
+				<div className="">
 					<Menu />
 				</div>
-				
 			</Container>
 
 			<Container fluid className="body-message overflow-auto my-2 py-3">
@@ -125,8 +123,11 @@ const MessagePage = () => {
 					<div ref={messageEndRef}></div>
 				</ul>
 			</Container>
-			<Container fluid className="shadow footer border border-2 border-primary">
-				<Form className="d-flex pt-3" onSubmit={handleSubmission}>
+			<Container
+				fluid
+				className="shadow footer border border-2 border-primary p-2"
+			>
+				<Form className="d-flex" onSubmit={handleSubmission}>
 					<Form.Control
 						as="textarea"
 						placeholder="Type your message here"

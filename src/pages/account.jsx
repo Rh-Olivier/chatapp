@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button, Container, Accordion } from "react-bootstrap";
+import { Form, Button, Container, Alert, Accordion } from "react-bootstrap";
 import { RiEyeCloseFill, RiEyeFill, RiArrowLeftLine } from "react-icons/ri";
 import { useDispatch, useSelector } from "react-redux";
 import "../css/account.css";
@@ -8,6 +8,7 @@ import axios from "axios";
 import { addUser } from "../data/userSlice";
 import server from "../api/config";
 import { fetchAllMessage } from "../data/allmessageSlice";
+import { deleteAccount } from "../api/delete";
 
 const Account = () => {
 	const [showPassword, setshowPassword] = useState(false);
@@ -40,7 +41,7 @@ const Account = () => {
 			.then((update) => {
 				console.log(update.data);
 				dispatch(addUser(update.data.user));
-				dispatch(fetchAllMessage(update.data.messages))
+				dispatch(fetchAllMessage(update.data.messages));
 				navigate("/home/friend");
 			})
 			.catch((err) => {
@@ -52,6 +53,18 @@ const Account = () => {
 	const goBack = () => {
 		navigate("/home/friend");
 	};
+
+	const handleDeletion = () => {
+		deleteAccount(info.name, user.avatar)
+			.then((result) => {
+				if (result.message === "deleted") {
+					navigate("/");
+				}
+			})
+			.catch((err) => {
+				alert("Error");
+			});
+	};
 	return (
 		<Container className="fade-anim outer-container-form-account" fluid>
 			<div className="navigation d-flex justify-content-start ps-1">
@@ -61,12 +74,11 @@ const Account = () => {
 				/>
 				<h4 className="">Account</h4>
 			</div>
-			<Accordion defaultActiveKey="0" className="accordion-position" >
-				<Accordion.Item eventKey="0" >
+			<Accordion defaultActiveKey="0" className="accordion-position">
+				<Accordion.Item eventKey="0">
 					<Accordion.Header className="">Change name</Accordion.Header>
 					<Accordion.Body className="">
 						<Form className="" onSubmit={handleChangeSubmission}>
-							
 							<Form.Group controlId="formBasicName" className="mb-3">
 								<Form.Label>Name</Form.Label>
 								<Form.Control
@@ -77,7 +89,7 @@ const Account = () => {
 									value={info.name}
 								/>
 							</Form.Group>
-						
+
 							<div className="btn-container">
 								<Button type="submit" className="w-100 mt-4 mb-3 button">
 									Save change
@@ -101,8 +113,7 @@ const Account = () => {
 									value={info.email}
 								/>
 							</Form.Group>
-							
-							
+
 							<div className="btn-container">
 								<Button type="submit" className="w-100 mt-4 mb-3 button">
 									Save change
@@ -116,7 +127,6 @@ const Account = () => {
 					<Accordion.Header className="">Change password</Accordion.Header>
 					<Accordion.Body className="">
 						<Form className="" onSubmit={handleChangeSubmission}>
-							
 							<Form.Group controlId="formBasicPassword" className="mb-3">
 								<Form.Label>Password</Form.Label>
 								<Form.Control
@@ -147,11 +157,16 @@ const Account = () => {
 						</Form>
 					</Accordion.Body>
 				</Accordion.Item>
-				
+
 				<Accordion.Item eventKey="3">
 					<Accordion.Header>Remove my account</Accordion.Header>
 					<Accordion.Body>
-						Duis aute irure dolor in reprehenderit in voluptate velit.
+						<Alert variant="danger">
+							<h5>Do you really want to leave us ?</h5>
+							<Button variant="danger" onClick={() => handleDeletion()}>
+								Delete
+							</Button>
+						</Alert>
 					</Accordion.Body>
 				</Accordion.Item>
 			</Accordion>
