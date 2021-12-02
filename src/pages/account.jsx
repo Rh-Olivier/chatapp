@@ -129,25 +129,27 @@ const Account = () => {
 						<Form className="" onSubmit={handleChangeSubmission}>
 							<Form.Group controlId="formBasicPassword" className="mb-3">
 								<Form.Label>Password</Form.Label>
-								<Form.Control
-									type={showPassword ? "text" : "password"}
-									placeholder="Password"
-									name="password"
-									onChange={handleChange}
-									value={info.password}
-								/>
+								<div className="d-flex">
+									<Form.Control
+										type={showPassword ? "text" : "password"}
+										placeholder="Password"
+										name="password"
+										onChange={handleChange}
+										value={info.password}
+									/>
 
-								{!showPassword ? (
-									<RiEyeCloseFill
-										onClick={() => setshowPassword(!showPassword)}
-										className="password-account"
-									/>
-								) : (
-									<RiEyeFill
-										className="password-account"
-										onClick={() => setshowPassword(!showPassword)}
-									/>
-								)}
+									{!showPassword ? (
+										<RiEyeCloseFill
+											onClick={() => setshowPassword(!showPassword)}
+											className="passwd-account"
+										/>
+									) : (
+										<RiEyeFill
+											className="passwd-account"
+											onClick={() => setshowPassword(!showPassword)}
+										/>
+									)}
+								</div>
 							</Form.Group>
 							<div className="btn-container">
 								<Button type="submit" className="w-100 mt-4 mb-3 button">
@@ -162,10 +164,12 @@ const Account = () => {
 					<Accordion.Header>Remove my account</Accordion.Header>
 					<Accordion.Body>
 						<Alert variant="danger">
-							<h5>Do you really want to leave us ?</h5>
-							<Button variant="danger" onClick={() => handleDeletion()}>
-								Delete
-							</Button>
+							<h6>Do you really want to leave us ?</h6>
+							<div className="d-flex justify-content-end">
+								<Button variant="danger" onClick={() => handleDeletion()}>
+									Delete
+								</Button>
+							</div>
 						</Alert>
 					</Accordion.Body>
 				</Accordion.Item>

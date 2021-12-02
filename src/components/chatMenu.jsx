@@ -1,6 +1,14 @@
 import axios from "axios";
 import React, { useState, useContext, useEffect } from "react";
-import { ListGroup, Button, Container, Col, Row, Form } from "react-bootstrap";
+import {
+	ListGroup,
+	Button,
+	Container,
+	Col,
+	Row,
+	Form,
+	OverlayTrigger,
+} from "react-bootstrap";
 import { RiSearch2Line } from "react-icons/ri";
 import { ModeContext } from "../context/mode";
 import Userbox from "./userActif";
@@ -9,6 +17,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { allFriend } from "../data/friendsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import socketClient from "socket.io-client";
+import { socket } from "../api/socket";
+import "../css/suggestion.css";
 import findOneUser from "../api/find";
 
 const fetchUsers = async () => {
@@ -54,7 +64,7 @@ const ChatMenu = () => {
 
 	const [actifList, setactifList] = useState([]);
 	useEffect(() => {
-		console.log(" actif list", actifList);
+		//console.log(" actif list", actifList);
 	}, [actifList]);
 
 	/*const value = useContext(ActifContext)
@@ -79,19 +89,20 @@ const ChatMenu = () => {
 					let update = actifList;
 					update.push(element);
 					setactifList([...update]);
-					console.log("after update", actifList);
+					//console.log("after update", actifList);
 				}
 			}
 			//}
 		});
 
 		Server.on("OFFLINE_USERS", (actif) => {
-			console.log("offline ", actif);
+			//console.log("offline ", actif);
 			setactifList([...actif]);
 		});
 	});
 
 	const [search, setSearch] = useState("");
+	const [suggestion, setsuggestion] = useState([]);
 	// CONTROL THE SEARCH BAR
 	const handleChange = (e) => {
 		e.preventDefault();
@@ -106,6 +117,7 @@ const ChatMenu = () => {
 		e.preventDefault();
 		if (search !== "") {
 			const result = await findOneUser(search);
+
 			if (result.hasOwnProperty("err")) {
 				//console.log('not found');
 				setshow(true);
@@ -118,6 +130,22 @@ const ChatMenu = () => {
 			}
 		}
 	};
+
+	useEffect(() => {
+		if (search !== "") {
+			socket.on("disconnect", () => {
+				socket.connect();
+			});
+			socket.emit("SEARCH", search, socket.id);
+			//console.log(socket.id);
+			socket.on(`${socket.id}`, (result) => {
+				setsuggestion(result);
+			});
+		} else {
+			setsuggestion([]);
+		}
+	}, [search]);
+
 	return (
 		<Container
 			fluid
@@ -126,25 +154,41 @@ const ChatMenu = () => {
 		>
 			<Row className=" header">
 				<Col className="pt-3">
-					<Form
-						className="d-flex justify-content-around"
-						onSubmit={handleSearch}
+					<OverlayTrigger
+						trigger="click"
+						placement="bottom-start"
+						overlay={
+							<ListGroup className="suggestion-container">
+								{suggestion.map((item) => {
+									return (
+										<ListGroup.Item action onClick={() => setSearch(item)}>
+											{item}
+										</ListGroup.Item>
+									);
+								})}
+							</ListGroup>
+						}
 					>
-						<Form.Control
-							type="text"
-							placeholder="Search"
-							className={context.dark ? "pl-dark" : null}
-							value={search}
-							onChange={handleChange}
-						/>
-						<Button
-							className="ms-2"
-							variant={context.dark ? "light" : "white"}
-							type="submit"
+						<Form
+							className="d-flex justify-content-around"
+							onSubmit={handleSearch}
 						>
-							<RiSearch2Line />
-						</Button>
-					</Form>
+							<Form.Control
+								type="text"
+								placeholder="Search"
+								className={context.dark ? "pl-dark" : null}
+								value={search}
+								onChange={handleChange}
+							/>
+							<Button
+								className="ms-2"
+								variant={context.dark ? "light" : "white"}
+								type="submit"
+							>
+								<RiSearch2Line />
+							</Button>
+						</Form>
+					</OverlayTrigger>
 				</Col>
 				<p className={show ? "text-danger small" : "visually-hidden"}>
 					{" "}

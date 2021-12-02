@@ -26,17 +26,15 @@
 	text-align: right;
 }
 
-.password {
-	position: absolute;
-	top: 15.3rem;
-	right: 3.1rem;
-	cursor: pointer;
-	color: rgb(107, 82, 1);
+.control-input {
+	width: 107%;
 }
-.password-login {
-	position: absolute;
-	top: 17.8rem;
-	right: 3.1rem;
+.password-login,
+.password {
+	position: relative;
+	top: 10px;
+	right: 30px;
+
 	cursor: pointer;
 	color: rgb(107, 82, 1);
 }
@@ -61,6 +59,12 @@
 	left: 0;
 	bottom: 0;
 	z-index: 0;
+}
+
+.login-logo {
+	position: relative;
+	bottom: 1rem;
+	margin-bottom: 1rem;
 }
 
 .tracking-in-contract-bck {
@@ -205,6 +209,5 @@
 		z-index: 0;
 	}
 	.password-login {
-		top: 19.7rem;
 	}
 }

@@ -3,10 +3,10 @@
 }
 .logo {
 	position: absolute;
-	left: 11rem;
+	left: 14rem;
 	top: 0rem;
 	display: flex;
-	width: 7rem;
+	width: 10rem;
 }
 .logo-title {
 	font-size: 18px;
@@ -22,8 +22,8 @@
 
 .change-profil {
 	position: absolute;
-	top: 6.3rem;
-	left: 12.3rem;
+	top: 6.8rem;
+	left: 53%;
 	color: rgb(173, 0, 226);
 	font-size: 28px;
 	background-color: #fff;
@@ -100,13 +100,11 @@
 	position: fixed;
 }
 
-@media screen and (min-width: 350px) and (max-width: 400px) {
-	.logo {
-		left: 13rem;
+@media screen and (min-width: 500px) {
+	.listgroup-set {
+		width: 60vw;
 	}
-}
-@media screen and (max-width: 340px) {
-	.change-profil {
-		left: 11rem;
+	.logo {
+		left: 28rem;
 	}
 }

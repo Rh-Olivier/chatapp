@@ -143,8 +143,8 @@
 	transition: all 0.2s;
 	background-color: transparent;
 	position: relative;
-	top: -5px;
-	right: 2px;
+	top: -2px;
+	right: 1px;
 }
 .bg-setting {
 	background-color: rgba(218, 212, 212, 0.315);
@@ -174,7 +174,7 @@
 }
 
 .listItem {
-	height: 5rem;
+	height: 5.4rem;
 	border: 2px solid;
 	border-image: linear-gradient(30deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
 	cursor: pointer;

@@ -57,11 +57,12 @@ const Userbox = (props) => {
 			(item) => item.friend === props.user.name
 		);
 		if (currentOne === undefined) {
-			new_interaction(user, props.user.name)
+			new_interaction(userRedux, props.user.name)
 				.then((result) => {
 					//console.log('new inter ' ,result);
 					dispatch(addOneMessage(result.data));
 					dispatch(addMessage(result.data));
+					navigate("/home/message");
 
 					//console.log('all msg update'  , allMessage);
 				})
@@ -105,7 +106,7 @@ const Userbox = (props) => {
 	}
 	return (
 		<div
-			className="mb-1 shadow-sm listItem p-2"
+			className="mb-2 shadow-sm listItem p-2"
 			style={{
 				backgroundColor: context.bg,
 				color: context.color,

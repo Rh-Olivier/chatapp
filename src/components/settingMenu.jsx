@@ -10,15 +10,11 @@ import {
 } from "react-bootstrap";
 import {
 	RiMoonFill,
-	RiInstagramFill,
 	RiUploadCloud2Fill,
 	RiSunFill,
 	RiSettingsFill,
 	RiLogoutCircleFill,
 	RiAddCircleFill,
-	RiFacebookCircleFill,
-	RiGithubFill,
-	RiGoogleFill,
 	RiUserSettingsFill,
 	RiErrorWarningFill,
 } from "react-icons/ri";
@@ -37,7 +33,7 @@ const SettingMenu = (props) => {
 	const [show, setshow] = useState(false);
 	const context = useContext(ModeContext);
 	const data = useSelector((state) => state.user);
-	console.log("> redux ", data.user);
+	//console.log("> redux ", data.user);
 
 	const [dark, setdark] = useState(false);
 
@@ -65,7 +61,7 @@ const SettingMenu = (props) => {
 
 	const handleLogOut = (e) => {
 		e.preventDefault();
-		console.log("I am log out ", data.user.name);
+		//console.log("I am log out ", data.user.name);
 		socket.emit("LOG_OUT", data.user.name);
 
 		// Remove the user data from localStorage
@@ -73,7 +69,7 @@ const SettingMenu = (props) => {
 
 		// Disconnect the socket.ionn
 		socket.disconnect();
-		console.log("disconnect : ", socket.disconnected);
+		//console.log("disconnect : ", socket.disconnected);
 	};
 
 	// HANDLE THE UPLOADING PROCESS :
@@ -92,7 +88,7 @@ const SettingMenu = (props) => {
 			const currentFile = selectedFiles[0];
 			let formData = new FormData();
 			formData.append("avatar", currentFile);
-			console.log(formData);
+			//console.log(formData);
 			const result = await axios.post(
 				`${server}/upload/${data.user.name}`,
 				formData,
@@ -182,13 +178,21 @@ const SettingMenu = (props) => {
 
 						<ListGroup.Item style={style} className="item">
 							<Link to="/home/account" style={style} className="link">
-								<RiUserSettingsFill className="ri" color="green" /> Account
+								<RiUserSettingsFill
+									className="ri"
+									color={dark ? "rgb(0, 255, 76)" : "green"}
+								/>
+								Account
 							</Link>
 						</ListGroup.Item>
 
 						<ListGroup.Item style={style} className="item">
 							<Link to="/home/about" style={style} className="link">
-								<RiErrorWarningFill className="ri" color="blue" /> About
+								<RiErrorWarningFill
+									className="ri"
+									color={dark ? "rgb(0, 132, 255)" : "blue"}
+								/>{" "}
+								About
 							</Link>
 						</ListGroup.Item>
 
