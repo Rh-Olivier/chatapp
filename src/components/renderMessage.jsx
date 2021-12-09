@@ -3,7 +3,6 @@ import { Image } from "react-bootstrap";
 import server from "../api/config";
 import { useDispatch, useSelector } from "react-redux";
 //import axios from "axios";
-import fetchDefaultMessage from "../api/defaultMessage";
 import { io } from "socket.io-client";
 import { updateOneMessage } from "../data/allmessageSlice";
 import { addMessage } from "../data/messageSlice";
@@ -21,10 +20,12 @@ const correctAvatar = (arr, u) => {
 	return avatar;
 };
 
-const Message = ({ setUrl }) => {
+const Message = ({ setUrl , scroll }) => {
 	const [message, setmessage] = useState([]);
 	useEffect(() => {
-		console.log("after click message ", message);
+		//console.log("after click message ", message);
+		scroll()
+		// eslint-disable-next-line
 	}, [message]);
 
 	const dispatch = useDispatch();
@@ -34,18 +35,7 @@ const Message = ({ setUrl }) => {
 
 	// Current message viewed in the ui
 	const messageRedux = useSelector((state) => state.message);
-	useEffect(() => {
-		//console.log('user ' , user.user.name);
-		fetchDefaultMessage(user.user.name)
-			.then((result) => {
-				console.log(result);
-				dispatch(addMessage(result))
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-			// eslint-disable-next-line 
-	}, []);
+
 	useEffect(() => {
 		if (messageRedux.hasOwnProperty("user")) {
 			//console.log("msg redux ", messageRedux);
@@ -95,7 +85,7 @@ const Message = ({ setUrl }) => {
 							style={{ width: "30px", height: "30px", borderRadius: "50%" }}
 						/>
 					</div>
-					<div className="bg-primary text-white friend-sms">
+					<div className="bg-radient text-white friend-sms">
 						<div>{content}</div>
 						<div className='timeStamp'>{timeStamp}</div>
 					</div>

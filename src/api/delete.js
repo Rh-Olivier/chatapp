@@ -16,4 +16,19 @@ const deleteMessage = async (user, friend) => {
 	}
 };
 
+export const deleteAccount = async (user, avatar) => {
+	try {
+		const res = await axios.delete(`${server}/delete-account`, {
+			data: {
+				name: user,
+				avatar : avatar
+			},
+		});
+		//console.log('delete' ,  res);
+		return res.data;
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export default deleteMessage;

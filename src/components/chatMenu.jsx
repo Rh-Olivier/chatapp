@@ -1,14 +1,24 @@
 import axios from "axios";
 import React, { useState, useContext, useEffect } from "react";
-import { ListGroup, Button, Container, Col, Row, Form } from "react-bootstrap";
+import {
+	ListGroup,
+	Button,
+	Container,
+	Col,
+	Row,
+	Form,
+	OverlayTrigger,
+} from "react-bootstrap";
 import { RiSearch2Line } from "react-icons/ri";
 import { ModeContext } from "../context/mode";
 import Userbox from "./userActif";
 import server from "../api/config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { allFriend } from "../data/friendsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import socketClient from "socket.io-client";
+import { socket } from "../api/socket";
+import "../css/suggestion.css";
 import findOneUser from "../api/find";
 
 const fetchUsers = async () => {
@@ -30,15 +40,21 @@ const fetchUsers = async () => {
 const ChatMenu = () => {
 	//const [show, setshow] = useState(false);
 	const context = useContext(ModeContext);
-	const [users, setusers] = useState(["Olivier", "Stark", "Romanof"]);
+	const [users, setusers] = useState([]);
 
-	/*const actifList = useSelector((state) => state.actif);*/
+	const user = useSelector((state) => state.user);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		fetchUsers()
 			.then((result) => {
-				setusers(result);
+				let result_filtered = result.map((item) => {
+					if (item.name !== user.user.name) {
+						return item;
+					}
+				});
+
+				setusers(result_filtered);
 				dispatch(allFriend(result));
 			})
 			.catch((err) => {
@@ -48,7 +64,7 @@ const ChatMenu = () => {
 
 	const [actifList, setactifList] = useState([]);
 	useEffect(() => {
-		console.log(" actif list", actifList);
+		//console.log(" actif list", actifList);
 	}, [actifList]);
 
 	/*const value = useContext(ActifContext)
@@ -73,19 +89,20 @@ const ChatMenu = () => {
 					let update = actifList;
 					update.push(element);
 					setactifList([...update]);
-					console.log("after update", actifList);
+					//console.log("after update", actifList);
 				}
 			}
 			//}
 		});
 
 		Server.on("OFFLINE_USERS", (actif) => {
-			console.log("offline ", actif);
+			//console.log("offline ", actif);
 			setactifList([...actif]);
 		});
 	});
 
 	const [search, setSearch] = useState("");
+	const [suggestion, setsuggestion] = useState([]);
 	// CONTROL THE SEARCH BAR
 	const handleChange = (e) => {
 		e.preventDefault();
@@ -100,6 +117,7 @@ const ChatMenu = () => {
 		e.preventDefault();
 		if (search !== "") {
 			const result = await findOneUser(search);
+
 			if (result.hasOwnProperty("err")) {
 				//console.log('not found');
 				setshow(true);
@@ -112,47 +130,76 @@ const ChatMenu = () => {
 			}
 		}
 	};
+
+	useEffect(() => {
+		if (search !== "") {
+			socket.on("disconnect", () => {
+				socket.connect();
+			});
+			socket.emit("SEARCH", search, socket.id);
+			//console.log(socket.id);
+			socket.on(`${socket.id}`, (result) => {
+				setsuggestion(result);
+			});
+		} else {
+			setsuggestion([]);
+		}
+	}, [search]);
+
 	return (
 		<Container
-			className="shadow mt-1 p-5"
+			fluid
+			className="chatmenu-innercontainer "
 			style={{ backgroundColor: context.bg, color: context.color }}
 		>
-			<Row className="header">
-				<Col>
-					<Form
-						className="d-flex justify-content-around"
-						onSubmit={handleSearch}
+			<Row className=" header">
+				<Col className="pt-3">
+					<OverlayTrigger
+						trigger="click"
+						placement="bottom-start"
+						overlay={
+							<ListGroup className="suggestion-container">
+								{suggestion.map((item) => {
+									return (
+										<ListGroup.Item action onClick={() => setSearch(item)}>
+											{item}
+										</ListGroup.Item>
+									);
+								})}
+							</ListGroup>
+						}
 					>
-						<Form.Control
-							type="text"
-							placeholder="Search"
-							className={context.dark ? "pl-dark" : null}
-							value={search}
-							onChange={handleChange}
-						/>
-						<Button
-							className="ms-2"
-							variant={context.dark ? "light" : "white"}
-							type="submit"
+						<Form
+							className="d-flex justify-content-around"
+							onSubmit={handleSearch}
 						>
-							<RiSearch2Line color="blue" />
-						</Button>
-					</Form>
+							<Form.Control
+								type="text"
+								placeholder="Search"
+								className={context.dark ? "pl-dark" : null}
+								value={search}
+								onChange={handleChange}
+							/>
+							<Button
+								className="ms-2"
+								variant={context.dark ? "light" : "white"}
+								type="submit"
+							>
+								<RiSearch2Line />
+							</Button>
+						</Form>
+					</OverlayTrigger>
 				</Col>
 				<p className={show ? "text-danger small" : "visually-hidden"}>
 					{" "}
 					Ooops! not found{" "}
 				</p>
 			</Row>
-			<Row>
-				<ListGroup className="body position overflow ">
-					{users.length === 0 ? (
-						<div></div>
-					) : (
-						users.map((user) => {
-							return <Userbox key={nanoid()} user={user} actif={actifList} />;
-						})
-					)}
+			<Row className="ps-1 list-container">
+				<ListGroup className="body-friend position overflow p-2 ">
+					{users.map((user) => {
+						return <Userbox key={nanoid()} user={user} actif={actifList} />;
+					})}
 				</ListGroup>
 			</Row>
 		</Container>

@@ -1,16 +1,64 @@
 .header {
 	height: 12vh;
-	margin-top: 1rem;
+}
+.header-friend-list {
+	height: 10vh;
+	background: linear-gradient(330deg, rgb(248, 26, 248), rgb(40, 2, 252));
+	box-shadow: 0px 3px 5px rgba(56, 1, 61, 0.74);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 4;
+	padding-left: 4.5rem;
+	padding-right: 0.5rem;
 }
 
-.body {
-	height: 67vh;
+.header-message {
+	height: 12vh;
+	padding-top: 1rem;
+	border-radius: 0.6em;
+}
 
+.back {
+	position: absolute;
+	top: 10px;
+	left: 15px;
+	font-size: 22px;
+	cursor: pointer;
+	transition: font-size 0.3s;
+}
+.back:hover,
+.back:focus {
+	font-size: 24px;
+}
+
+.body-friend {
+	height: 75vh;
+}
+.body-message {
+	height: 63vh;
 }
 
 .footer {
-	height: 14vh;
-	margin-bottom: 0.8rem;
+	height: 5rem;
+	border-radius: 0.6em;
+}
+
+.messageContainer {
+	height: 100vh;
+	padding-top: 2.5rem;
+}
+
+.chatmenu-container {
+	padding: 10px;
+	height: 100vh;
+	padding: 0;
+}
+.chatmenu-innercontainer {
+	position: absolute;
+	top: 4rem;
+	left: 0;
+	height: 88vh;
 }
 
 .overflow > ul > li {
@@ -22,15 +70,30 @@
 	height: 60px;
 	/*position: relative;
     top: -5px;*/
+	transition: all 0.3s;
+}
+.pdp-container {
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	border-radius: 50%;
 }
 .pdp Image {
 	font-size: 40px;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.459);
 }
-.position {
+.pdp:hover {
+	width: 70px;
+	height: 70px;
+}
+
+.list-container {
 	position: relative;
+}
+.position {
 	overflow-y: scroll;
 }
+
 .bs {
 	box-shadow: 0 0 7px rgba(0, 0, 0, 0.301);
 }
@@ -41,13 +104,7 @@
 	border-radius: 5px 0 5px 5px;
 	list-style: none;
 }
-.more-option-user{
-    position: relative;
-    right: 8.5rem;
-    font-size: 25px;
-    color: slategray;
-    cursor: pointer;
-}
+
 .friend-sms {
 	margin-bottom: 1rem;
 	margin-left: 1rem;
@@ -56,33 +113,48 @@
 	border-radius: 0 5px 5px 5px;
 	list-style: none;
 }
-.more-option-friend{
-    position: relative;
-    left: 8.5rem;
-    font-size: 25px;
-    color: slategray;
-    cursor: pointer;
-}
+
 .friend-box {
 	position: relative;
 	right: 2rem;
 }
 
-.timeStamp{
+.timeStamp {
 	font-size: smaller;
 	color: rgba(0, 0, 0, 0.7);
 }
 
 #popover-menu {
-	padding: 2rem;
+	padding: 1rem;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.308);
 	border-width: 0;
 }
 
 .setting {
-	position: absolute;
+	position: fixed;
 	left: 1rem;
 	top: 1rem;
+	z-index: 5;
+}
+.setting-icon {
+	width: 22px;
+	height: 22px;
+	color: rgb(0, 0, 0);
+	transition: all 0.2s;
+	background-color: transparent;
+	position: relative;
+	top: -2px;
+	right: 1px;
+}
+.bg-setting {
+	background-color: rgba(218, 212, 212, 0.315);
+	border-radius: 50%;
+	width: 34px;
+	height: 34px;
+	cursor: pointer;
+}
+.bg-setting:hover {
+	background-color: rgba(153, 152, 152, 0.705);
 }
 
 .pl-dark {
@@ -94,27 +166,83 @@
 
 .actif-status {
 	position: relative;
-	top: 1.2rem;
-	left: -1.2rem;
+	top: -1.2rem;
+	left: 2.5rem;
 	font-size: 17px;
 	border-radius: 50%;
 	background-color: white;
-
 }
 
+.listItem {
+	height: 5.4rem;
+	border: 2px solid;
+	border-image: linear-gradient(30deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	cursor: pointer;
+}
+.listItem:hover {
+	animation: b-anim 1s linear infinite;
+}
 
-::-webkit-scrollbar{
+@-webkit-keyframes b-anim {
+	0% {
+		border-image: linear-gradient(30deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	30% {
+		border-image: linear-gradient(90deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	50% {
+		border-image: linear-gradient(180deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	80% {
+		border-image: linear-gradient(270deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	100% {
+		border-image: linear-gradient(360deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+}
+@keyframes b-anim {
+	0% {
+		border-image: linear-gradient(30deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	30% {
+		border-image: linear-gradient(90deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	50% {
+		border-image: linear-gradient(180deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	80% {
+		border-image: linear-gradient(270deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+	100% {
+		border-image: linear-gradient(360deg, rgb(98, 0, 255), rgb(253, 0, 253)) 1;
+	}
+}
+
+.notification-badge {
+	border-radius: 10px;
+}
+
+.message-header,
+.bg-radient {
+	background: linear-gradient(30deg, rgb(248, 26, 248), rgb(119, 4, 226), blue);
+}
+
+.ri-1 {
+	font-size: 15px;
+	margin-right: 4px;
+}
+
+::-webkit-scrollbar {
 	width: 5px;
 }
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
 	background: rgba(255, 255, 255, 0);
 	border-radius: 4px;
 }
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
 	background: rgb(177, 174, 174);
 	border-radius: 2px;
 }
-
 
 /*@media screen and (max-width : 500px) {
 	

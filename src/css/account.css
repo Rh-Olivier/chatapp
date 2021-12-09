@@ -1,0 +1,92 @@
+.outer-container-form-account {
+	height: 100vh;
+}
+
+.container-account-form {
+	padding: 2rem;
+	position: relative;
+	top: 3rem;
+}
+.navigation {
+	background: linear-gradient(330deg, rgb(248, 26, 248), rgb(40, 2, 252));
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	width: 92vw;
+	height: 3.5rem;
+	padding-top: 0.9rem;
+	box-shadow: 0px 3px 5px rgba(56, 1, 61, 0.466);
+	color: white;
+	border-radius: 0.5rem;
+}
+.back-account {
+	width: 25px;
+	height: 25px;
+	transition: all 0.2s;
+}
+.back-account:hover {
+	border: 2px solid white;
+	border-radius: 50%;
+}
+.header-form-account {
+	background: linear-gradient(330deg, rgb(248, 26, 248), rgb(40, 2, 252));
+	color: white;
+	width: 15rem;
+	height: 3.6rem;
+	padding: 1rem;
+	padding-left: 3rem;
+	position: relative;
+	right: 3rem;
+	margin-bottom: 1.5rem;
+	border-radius: 0 8px 8px 0;
+
+	animation: slide 0.3s ease-out 1;
+}
+.btn-container {
+	width: 10rem;
+	position: relative;
+	left: 6.1rem;
+}
+.button {
+	background: linear-gradient(150deg, rgb(248, 26, 248), rgb(40, 2, 252));
+	color: white;
+}
+.button:hover {
+	background: linear-gradient(150deg, rgb(219, 29, 219), rgb(50, 24, 199));
+	color: white;
+}
+.passwd-account {
+	position: relative;
+	right: 2rem;
+	top: 0.5rem;
+	background-color: white;
+	width: 22px;
+	height: 22px;
+
+	padding: 2px;
+}
+/*-- Accordion position --*/
+.accordion-position {
+	position: relative;
+	top: 5rem;
+}
+
+@keyframes slide {
+	0% {
+		width: 0;
+		font-size: 0;
+		letter-spacing: 0;
+		height: 3.6rem;
+	}
+	50% {
+		width: 5rem;
+		font-size: 0;
+		letter-spacing: 0.01rem;
+		height: 3.6rem;
+	}
+	100% {
+		letter-spacing: normal;
+		width: 15rem;
+		height: 3.6rem;
+	}
+}

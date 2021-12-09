@@ -33,18 +33,19 @@ const Menu = () => {
 			placement="left-start"
 			overlay={
 				<Popover id="popover-menu">
+					
 					<p>
-						<ListGroup>
-							<ListGroup.Item action onClick={handleDeletion}>
-								<RiDeleteBin5Fill color="#c00" /> Delete this message
+						<ListGroup >
+							<ListGroup.Item action onClick={handleDeletion} className='border-0 ps-1'>
+								<RiDeleteBin5Fill color="#c00" className='ri-1' /> Delete conversation
 							</ListGroup.Item>
 						</ListGroup>
 					</p>
 				</Popover>
 			}
 		>
-			<Button variant="white" >
-				<RiMenu3Line color="white" style={{ width: "25px", height: "25px" }} />
+			<Button variant="white"  >
+				<RiMenu3Line color="white" style={{ width: "23px", height: "23px" }} />
 			</Button>
 		</OverlayTrigger>
 	);

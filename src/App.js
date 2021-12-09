@@ -1,9 +1,9 @@
 import React, { useState} from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./css/style.css"
 import Chatbox from "./pages/chatbox";
 import {  Container } from "react-bootstrap";
 import { ModeContext, themes } from "./context/mode";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import { Provider } from "react-redux";
 import store from "./data/store";
@@ -14,11 +14,10 @@ function App(props) {
 
 	return (
 		<Provider store={store}>
-			<Switch>
-				<Route exact path="/">
-					<Login />
-				</Route>
-				<Route exact path="/home">
+			<Routes>
+				<Route path="/" element={<Login />} />
+					
+				<Route path="home/*" element={
 					<ModeContext.Provider value={state}>
 							<Container
 								style={{ backgroundColor: state.bg, color: state.color }}
@@ -27,8 +26,10 @@ function App(props) {
 								<Chatbox setstate={setstate} />									
 							</Container>						
 					</ModeContext.Provider>
+				}>
+					
 				</Route>
-			</Switch>
+			</Routes>
 		</Provider>
 	);
 }
